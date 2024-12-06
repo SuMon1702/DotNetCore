@@ -12,6 +12,7 @@ stringBuilder.UserID = "sa";
 stringBuilder.Password = "sasa@123";
 stringBuilder.TrustServerCertificate = true;
 SqlConnection connection = new SqlConnection(stringBuilder.ConnectionString);
+
 connection.Open();
 Console.WriteLine("Connection opens");
 
