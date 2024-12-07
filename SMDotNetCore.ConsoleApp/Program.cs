@@ -10,3 +10,8 @@ Console.WriteLine("Hello, World!");
 AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 adoDotNetExample.Read();
 adoDotNetExample.Create("name", "title", "content");
+adoDotNetExample.Update(13, "Rose", "Action", "Fighting");
+adoDotNetExample.Delete(13);
+adoDotNetExample.Delete(14);
+adoDotNetExample.Edit(14);
+adoDotNetExample.Edit(1);
