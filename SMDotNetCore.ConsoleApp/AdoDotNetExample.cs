@@ -13,7 +13,7 @@ namespace SMDotNetCore.ConsoleApp
     internal class AdoDotNetExample
     {
 
-        private readonly SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
+        private  SqlConnectionStringBuilder _sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
         {
             DataSource = ".",
             InitialCatalog = "SMDotNetTrainingDB",
