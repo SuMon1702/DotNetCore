@@ -19,7 +19,8 @@ namespace SMDotNetCore.ConsoleApp
             //Edit(20);
 
             //Create("Dangal", "Action", "WatchNow");
-            Update(15, "SetIt", "Romance", "WatchIt");
+            //Update(15, "SetIt", "Romance", "WatchIt");
+            Delete(15);
         }
 
         public void Read()
@@ -76,9 +77,9 @@ namespace SMDotNetCore.ConsoleApp
            ,@MovieContent)";
 
             IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            int result= db.Execute(query,item);
+            int result = db.Execute(query, item);
 
-            string message= result>0? "Saving Successful." : "Saving Failed.";
+            string message = result > 0 ? "Saving Successful." : "Saving Failed.";
             Console.WriteLine(message);
         }
 
@@ -98,12 +99,28 @@ namespace SMDotNetCore.ConsoleApp
       ,[MovieContent] = @MovieContent
  WHERE MovieID= @MovieID;";
 
-            IDbConnection db= new SqlConnection (ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            int result= db.Execute(query,item);
+            IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, item);
 
             string message = result > 0 ? "Updating Successful" : "Updating Failed";
             Console.WriteLine(message);
 
+        }
+
+        public void Delete(int id)
+        {
+            var item = new MovieModel
+            {
+                MovieID = id,
+            };
+
+            string query = @"Delete From Tbl_Movie where movieId= @MovieID";
+
+            IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, item);
+
+            string message = result > 0 ? "Delete Successful" : "Delete Failed";
+            Console.WriteLine(message);
         }
     }
 }
