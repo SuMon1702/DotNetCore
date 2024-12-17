@@ -18,7 +18,8 @@ namespace SMDotNetCore.ConsoleApp
             //Edit(1);
             //Edit(20);
 
-            Create("Dangal", "Action", "WatchNow");
+            //Create("Dangal", "Action", "WatchNow");
+            Update(15, "SetIt", "Romance", "WatchIt");
         }
 
         public void Read()
@@ -79,6 +80,30 @@ namespace SMDotNetCore.ConsoleApp
 
             string message= result>0? "Saving Successful." : "Saving Failed.";
             Console.WriteLine(message);
+        }
+
+        public void Update(int id, string name, string title, string content)
+        {
+            var item = new MovieModel
+            {
+                MovieID = id,
+                MovieName = name,
+                MovieTitle = title,
+                MovieContent = content
+            };
+
+            string query = @"UPDATE [dbo].[Tbl_Movie]
+   SET [MovieName] = @MovieName
+      ,[MovieTitle] = @MovieTitle
+      ,[MovieContent] = @MovieContent
+ WHERE MovieID= @MovieID;";
+
+            IDbConnection db= new SqlConnection (ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            int result= db.Execute(query,item);
+
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            Console.WriteLine(message);
+
         }
     }
 }
