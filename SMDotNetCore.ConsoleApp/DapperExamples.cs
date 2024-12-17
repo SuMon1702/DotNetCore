@@ -29,7 +29,9 @@ namespace SMDotNetCore.ConsoleApp
                 Console.WriteLine(item.MovieTitle);
                 Console.WriteLine(item.MovieContent);
                 Console.WriteLine("...........................");
+
             }
+            Console.ReadKey();
 
         }
     }
