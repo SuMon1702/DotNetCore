@@ -20,7 +20,7 @@ namespace SMDotNetCore.ConsoleApp
 
             //Create("Dangal", "Action", "WatchNow");
             //Update(15, "SetIt", "Romance", "WatchIt");
-            Delete(15);
+            Delete(6);
         }
 
         public void Read()
@@ -114,7 +114,8 @@ namespace SMDotNetCore.ConsoleApp
                 MovieID = id,
             };
 
-            string query = @"Delete From Tbl_Movie where movieId= @MovieID";
+            string query = @"DELETE FROM [dbo].[Tbl_Movie]
+      WHERE MovieID=@MovieID;";
 
             IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             int result = db.Execute(query, item);
