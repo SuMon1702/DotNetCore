@@ -14,8 +14,8 @@ namespace SMDotNetCore.ConsoleApp
             //Read();
             //Edit(5);
             //Edit(25);
-            // Create("Princess", "Fiction", "Go");
-            // Update(5, "SetIt", "Romance", "WatchIt");
+             Create("Princess", "Fiction", "Go");
+             Update(5, "SetIt", "Romance", "WatchIt");
             Delete(2);
 
         }
