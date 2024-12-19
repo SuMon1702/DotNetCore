@@ -11,9 +11,10 @@ namespace SMDotNetCore.ConsoleApp
         private readonly AppDbContext db = new AppDbContext();
         public void Run()
         {
-            Read();
-            Edit(5);
-            Edit(25);
+            //Read();
+            //Edit(5);
+            //Edit(25);
+            Create("Princess", "Fiction", "Go");
         }
 
         private void Read()
@@ -46,6 +47,21 @@ namespace SMDotNetCore.ConsoleApp
             Console.WriteLine(item.MovieContent);
         }
 
+        public void Create(string name, string title, string content)
+        {
+            var item = new MovieModel
+            {
+                MovieName = name,
+                MovieTitle = title,
+                MovieContent = content
+            };
+
+            db.Movies.Add(item);
+            int result= db.SaveChanges();
+
+            string message = result > 0 ? "Saving Successful." : "Saving Failed.";
+            Console.WriteLine(message);
+        }
 
     }
 }
