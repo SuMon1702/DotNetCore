@@ -15,7 +15,8 @@ namespace SMDotNetCore.ConsoleApp
             //Edit(5);
             //Edit(25);
             // Create("Princess", "Fiction", "Go");
-            Update(5, "SetIt", "Romance", "WatchIt");
+            // Update(5, "SetIt", "Romance", "WatchIt");
+            Delete(2);
 
         }
 
@@ -82,6 +83,23 @@ namespace SMDotNetCore.ConsoleApp
 
             string message = result > 0 ? "Updating Successful" : "Updating Failed";
             Console.WriteLine(message);
+        }
+
+        private void Delete(int id)
+        {
+            var item = db.Movies.FirstOrDefault(x => x.MovieID == id);
+            if (item is null)
+            {
+                Console.WriteLine("No data found");
+                return;
+            }
+
+            db.Movies.Remove(item);
+            int result= db.SaveChanges();
+
+            string message = result > 0 ? "Deleting Successful" : "Updating Failed";
+            Console.WriteLine(message);
+
         }
 
 
