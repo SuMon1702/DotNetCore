@@ -97,7 +97,7 @@ namespace SMDotNetCore.ConsoleApp
             db.Movies.Remove(item);
             int result= db.SaveChanges();
 
-            string message = result > 0 ? "Deleting Successful" : "Updating Failed";
+            string message = result > 0 ? "Deleting Successful" : "Deleting Failed";
             Console.WriteLine(message);
 
         }
