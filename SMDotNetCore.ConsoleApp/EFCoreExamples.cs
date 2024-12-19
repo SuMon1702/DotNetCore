@@ -14,7 +14,9 @@ namespace SMDotNetCore.ConsoleApp
             //Read();
             //Edit(5);
             //Edit(25);
-            Create("Princess", "Fiction", "Go");
+            // Create("Princess", "Fiction", "Go");
+            Update(5, "SetIt", "Romance", "WatchIt");
+
         }
 
         private void Read()
@@ -63,7 +65,24 @@ namespace SMDotNetCore.ConsoleApp
             Console.WriteLine(message);
         }
 
-        
+        private void Update(int id, string name, string title, string content)
+        {
+            var item= db.Movies.FirstOrDefault(x=>x.MovieID == id);
+            if(item is null)
+            {
+                Console.WriteLine("No data found");
+                return;
+            }
+
+            item.MovieName = name;
+            item.MovieTitle = title;
+            item.MovieContent = content;
+
+            int result= db.SaveChanges();
+
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            Console.WriteLine(message);
+        }
 
 
     }
