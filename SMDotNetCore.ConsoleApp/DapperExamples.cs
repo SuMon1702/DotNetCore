@@ -14,12 +14,12 @@ namespace SMDotNetCore.ConsoleApp
     {
         public void Run()
         {
-            //Read();
-            //Edit(1);
-            //Edit(20);
+            Read();
+            Edit(1);
+            Edit(20);
 
-            //Create("Dangal", "Action", "WatchNow");
-            //Update(15, "SetIt", "Romance", "WatchIt");
+            Create("Dangal", "Action", "WatchNow");
+            Update(15, "SetIt", "Romance", "WatchIt");
             Delete(6);
         }
 
