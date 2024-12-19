@@ -12,7 +12,7 @@ namespace SMDotNetCore.ConsoleApp
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            
+            optionsBuilder.UseSqlServer(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
         }
 
         public DbSet<MovieModel> Movies { get; set; }
