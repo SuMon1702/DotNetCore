@@ -14,7 +14,8 @@ namespace SMDotNetCore.ConsoleApp
             DataSource = ".",
             InitialCatalog= "SMDotNetTrainingDB",
             UserID="sa",
-            Password="sasa@123"
+            Password="sasa@123",
+            TrustServerCertificate= true
         };
     }
 }
