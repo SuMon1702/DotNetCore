@@ -11,9 +11,9 @@ namespace SMDotNetCore.ConsoleApp
         private readonly AppDbContext db = new AppDbContext();
         public void Run()
         {
-            //Read();
-            //Edit(5);
-            //Edit(25);
+            Read();
+            Edit(5);
+            Edit(25);
              Create("Princess", "Fiction", "Go");
              Update(5, "SetIt", "Romance", "WatchIt");
             Delete(2);
