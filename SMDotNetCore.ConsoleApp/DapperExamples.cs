@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +42,7 @@ namespace SMDotNetCore.ConsoleApp
 
         public void Edit(int id)
         {
-            IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             var item = db.Query<MovieModel>("select * from Tbl_Movie where MovieId= @MovieID", new MovieModel { MovieID = id }).FirstOrDefault();
             if (item == null)
             {
@@ -76,7 +76,7 @@ namespace SMDotNetCore.ConsoleApp
            ,@MovieTitle
            ,@MovieContent)";
 
-            IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+             using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             int result = db.Execute(query, item);
 
             string message = result > 0 ? "Saving Successful." : "Saving Failed.";
@@ -99,7 +99,7 @@ namespace SMDotNetCore.ConsoleApp
       ,[MovieContent] = @MovieContent
  WHERE MovieID= @MovieID;";
 
-            IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+         using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             int result = db.Execute(query, item);
 
             string message = result > 0 ? "Updating Successful" : "Updating Failed";
@@ -117,7 +117,7 @@ namespace SMDotNetCore.ConsoleApp
             string query = @"DELETE FROM [dbo].[Tbl_Movie]
       WHERE MovieID=@MovieID;";
 
-            IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+           using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             int result = db.Execute(query, item);
 
             string message = result > 0 ? "Delete Successful" : "Delete Failed";
