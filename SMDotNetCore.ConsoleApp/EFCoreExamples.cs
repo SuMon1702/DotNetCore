@@ -47,7 +47,7 @@ namespace SMDotNetCore.ConsoleApp
             Console.WriteLine(item.MovieContent);
         }
 
-        public void Create(string name, string title, string content)
+        private void Create(string name, string title, string content)
         {
             var item = new MovieModel
             {
@@ -62,6 +62,9 @@ namespace SMDotNetCore.ConsoleApp
             string message = result > 0 ? "Saving Successful." : "Saving Failed.";
             Console.WriteLine(message);
         }
+
+        
+
 
     }
 }
