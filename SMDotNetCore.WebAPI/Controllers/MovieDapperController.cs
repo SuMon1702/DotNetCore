@@ -24,9 +24,9 @@ namespace SMDotNetCore.WebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetMovie(int id)
         {
-            string query = "select * from Tbl_Movie where MovieId = @MovieID";
-            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            var item = db.Query<MovieModel>(query, new MovieModel { MovieID = id }).FirstOrDefault();
+            //string query = "select * from Tbl_Movie where MovieId = @MovieID";
+            //using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            //var item = db.Query<MovieModel>(query, new MovieModel { MovieID = id }).FirstOrDefault();
             if (item == null)
             {
 
@@ -73,6 +73,14 @@ namespace SMDotNetCore.WebAPI.Controllers
             string message = result > 0 ? "Updating Successful" : "Updating Failed";
             return Ok(message);
         }
-
+        private MovieModel? FindById(int id)
+        {
+            string query = "select * from Tbl_Movie where MovieId = @MovieID";
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            var item = db.Query<MovieModel>(query, new MovieModel { MovieID = id }).FirstOrDefault();
+            return item;
+        }
     }
+
+   
 }
