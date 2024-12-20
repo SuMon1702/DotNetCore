@@ -77,6 +77,30 @@ namespace SMDotNetCore.WebAPI.Controllers
             string message = result > 0 ? "Updating Successful" : "Updating Failed";
             return Ok(message);
         }
+
+        [HttpPut("{id}")]
+
+        public IActionResult PatchMovie(int id, MovieModel movie)
+        {
+            var item = FindById(id);
+            if (item == null)
+            {
+                return NotFound("No data Found");
+            }
+            movie.MovieID = id;
+
+            string query = @"UPDATE [dbo].[Tbl_Movie]
+   SET [MovieName] = @MovieName
+      ,[MovieTitle] = @MovieTitle
+      ,[MovieContent] = @MovieContent
+ WHERE MovieID= @MovieID;";
+
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, movie);
+
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            return Ok(message);
+        }
         private MovieModel? FindById(int id)
         {
             string query = "select * from Tbl_Movie where MovieId = @MovieID";
