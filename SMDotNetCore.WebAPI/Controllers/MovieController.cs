@@ -34,25 +34,25 @@ namespace SMDotNetCore.WebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(MovieModel movie)
+        public IActionResult Create(MovieModel model)
         {
-            _context.Movies.Add(movie);
+            _context.Movies.Add(model);
             var result= _context.SaveChanges();
             string message = result > 0 ? "Saving Successful" : "Saving Failed";
             return Ok(message);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, MovieModel movie)
+        public IActionResult Update(int id, MovieModel model)
         {
             var item= _context.Movies.FirstOrDefault(x=>x.MovieID == id);
             if (item is null)
             {
                 return NotFound("No data found");
             }
-            item.MovieName = movie.MovieName;
-            item.MovieTitle = movie.MovieTitle;
-            item.MovieContent = movie.MovieContent;
+            item.MovieName = model.MovieName;
+            item.MovieTitle = model.MovieTitle;
+            item.MovieContent = model.MovieContent;
 
             var result = _context.SaveChanges();
 
@@ -60,10 +60,34 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpPatch]
-        public IActionResult Patch()
+        [HttpPatch("{id}")]
+        public IActionResult Patch(int id, MovieModel model)
         {
-            return Ok("Update");
+            var item = _context.Movies.FirstOrDefault(x => x.MovieID == id);
+            if (item is null)
+            {
+                return NotFound("No data found");
+            }
+
+            if(!string.IsNullOrEmpty(model.MovieName))
+            {
+                item.MovieName = model.MovieName;
+            }
+
+            if(!string.IsNullOrEmpty(model.MovieTitle))
+            {
+                item.MovieTitle= model.MovieTitle;
+            }
+
+            if(!string.IsNullOrEmpty(model.MovieContent))
+            {
+               item.MovieContent= model.MovieContent;
+            }
+
+            var result = _context.SaveChanges();
+
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            return Ok(message);
         }
 
         [HttpDelete]
