@@ -56,6 +56,23 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
+        [HttpPut("{id}")]
+
+        public IActionResult PutMovie(int id,MovieModel movie)
+        {
+
+            string query = @"UPDATE [dbo].[Tbl_Movie]
+   SET [MovieName] = @MovieName
+      ,[MovieTitle] = @MovieTitle
+      ,[MovieContent] = @MovieContent
+ WHERE MovieID= @MovieID;";
+
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, movie);
+
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            return Ok(message);
+        }
 
     }
 }
