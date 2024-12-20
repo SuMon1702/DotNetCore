@@ -78,28 +78,49 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpPut("{id}")]
+ //       [HttpPut("{id}")]
 
-        public IActionResult PatchMovie(int id, MovieModel movie)
+ //       public IActionResult PatchMovie(int id, MovieModel movie)
+ //       {
+ //           var item = FindById(id);
+ //           if (item == null)
+ //           {
+ //               return NotFound("No data Found");
+ //           }
+ //           movie.MovieID = id;
+
+ //           string query = @"UPDATE [dbo].[Tbl_Movie]
+ //  SET [MovieName] = @MovieName
+ //     ,[MovieTitle] = @MovieTitle
+ //     ,[MovieContent] = @MovieContent
+ //WHERE MovieID= @MovieID;";
+
+ //           using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+ //           int result = db.Execute(query, movie);
+
+ //           string message = result > 0 ? "Updating Successful" : "Updating Failed";
+ //           return Ok(message);
+ //       }
+
+        [HttpDelete("{id}")]
+
+        public IActionResult DeleteMovie(int id)
         {
             var item = FindById(id);
             if (item == null)
             {
                 return NotFound("No data Found");
             }
-            movie.MovieID = id;
-
-            string query = @"UPDATE [dbo].[Tbl_Movie]
-   SET [MovieName] = @MovieName
-      ,[MovieTitle] = @MovieTitle
-      ,[MovieContent] = @MovieContent
- WHERE MovieID= @MovieID;";
+            string query = @"DELETE FROM [dbo].[Tbl_Movie]
+      WHERE MovieID=@MovieID;";
 
             using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, movie);
+            int result = db.Execute(query, item);
 
-            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            string message = result > 0 ? "Delete Successful" : "Delete Failed";
             return Ok(message);
+
+
         }
         private MovieModel? FindById(int id)
         {
