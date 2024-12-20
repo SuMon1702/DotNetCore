@@ -90,9 +90,21 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpDelete]
-        public IActionResult Delete()
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
+            var item = _context.Movies.FirstOrDefault(x => x.MovieID == id);
+            if (item is null)
+            {
+                return NotFound("No data found");
+            }
+
+            _context.Movies.Remove(item);
+            var result = _context.SaveChanges();
+
+            string message = result > 0 ? "Deleting Successful" : "Updating Failed";
+            return Ok(message);
+
             return Ok("Delete");
         }
     }
