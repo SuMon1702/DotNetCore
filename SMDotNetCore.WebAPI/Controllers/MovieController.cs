@@ -42,10 +42,22 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpPut]
-        public IActionResult Update()
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, MovieModel movie)
         {
-            return Ok("Update");
+            var item= _context.Movies.FirstOrDefault(x=>x.MovieID == id);
+            if (item is null)
+            {
+                return NotFound("No data found");
+            }
+            item.MovieName = movie.MovieName;
+            item.MovieTitle = movie.MovieTitle;
+            item.MovieContent = movie.MovieContent;
+
+            var result = _context.SaveChanges();
+
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            return Ok(message);
         }
 
         [HttpPatch]
