@@ -34,9 +34,12 @@ namespace SMDotNetCore.WebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Create(MovieModel movie)
         {
-            return Ok("Create");
+            _context.Movies.Add(movie);
+            var result= _context.SaveChanges();
+            string message = result > 0 ? "Saving Successful" : "Saving Failed";
+            return Ok(message);
         }
 
         [HttpPut]
