@@ -2,6 +2,7 @@
 
 using Microsoft.Data.SqlClient;
 using SMDotNetCore.ConsoleApp;
+using SMDotNetCore.ConsoleApp.AdoDotNet;
 
 
 //Console.WriteLine("Hello, World!");
