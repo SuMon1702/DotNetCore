@@ -14,7 +14,7 @@ namespace SMDotNetCore.WebAPI.Controllers
         [HttpGet]
         public IActionResult GetMovies()
         {
-            string query= "select * from Tbl_Movie";
+            string query = "select * from Tbl_Movie";
             using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
             List<MovieModel> lst = db.Query<MovieModel>(query).ToList();
             return Ok(lst);
@@ -35,5 +35,27 @@ namespace SMDotNetCore.WebAPI.Controllers
             }
             return Ok(item);
         }
+
+
+        [HttpPost]
+        public IActionResult CreateMovie(MovieModel movie)
+        {
+            string query = @"INSERT INTO [dbo].[Tbl_Movie]
+           ([MovieName]
+           ,[MovieTitle]
+           ,[MovieContent])
+     VALUES
+           (@MovieName
+           ,@MovieTitle
+           ,@MovieContent)";
+
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, movie);
+
+            string message = result > 0 ? "Saving Successful." : "Saving Failed.";
+            return Ok(message);
+        }
+
+
     }
 }
