@@ -102,7 +102,7 @@ namespace SMDotNetCore.WebAPI.Controllers
             _context.Movies.Remove(item);
             var result = _context.SaveChanges();
 
-            string message = result > 0 ? "Deleting Successful" : "Updating Failed";
+            string message = result > 0 ? "Deleting Successful" : "Deleting Failed";
             return Ok(message);
 
             return Ok("Delete");
