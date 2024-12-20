@@ -24,9 +24,7 @@ namespace SMDotNetCore.WebAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetMovie(int id)
         {
-            //string query = "select * from Tbl_Movie where MovieId = @MovieID";
-            //using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            //var item = db.Query<MovieModel>(query, new MovieModel { MovieID = id }).FirstOrDefault();
+            var item= FindById(id);
             if (item == null)
             {
 
