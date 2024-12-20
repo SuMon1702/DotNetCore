@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SMDotNetCore.WebAPI.Model;
 
 namespace SMDotNetCore.WebAPI.Controllers
 {
@@ -19,6 +20,17 @@ namespace SMDotNetCore.WebAPI.Controllers
         {
             var lst= _context.Movies.ToList();
             return Ok(lst);
+        }
+
+        [HttpGet ("{id}")]
+        public IActionResult Edit(int id)
+        {
+            var item = _context.Movies.FirstOrDefault(x => x.MovieID == id);
+            if (item is null)
+            {
+                return NotFound("No data found");
+            }
+            return Ok(item);
         }
 
         [HttpPost]
