@@ -58,6 +58,12 @@ namespace SMDotNetCore.WebAPI.Controllers
 
         public IActionResult PutMovie(int id,MovieModel movie)
         {
+            var item= FindById(id);
+            if (item == null)
+            {
+                return NotFound("No data Found");
+            }
+            movie.MovieID = id;
 
             string query = @"UPDATE [dbo].[Tbl_Movie]
    SET [MovieName] = @MovieName
