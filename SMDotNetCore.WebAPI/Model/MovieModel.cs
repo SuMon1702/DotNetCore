@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SMDotNetCore.WebAPI.Model
 {
     [Table("Tbl_Movie")]
-    public class MovieModel
+    public class MovieModels
     {
         [Key]
         public int MovieID { get; set; }
