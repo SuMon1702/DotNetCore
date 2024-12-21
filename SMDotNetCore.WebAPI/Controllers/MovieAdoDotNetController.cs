@@ -24,17 +24,27 @@ namespace SMDotNetCore.WebAPI.Controllers
         sqlDataAdapter.Fill(dt);
             connection.Close();
 
-            List<MovieModel> lst = new List<MovieModel>();
-            foreach(DataRow dr in dt.Rows)
-            {
-                MovieModel model = new MovieModel();
-                model.MovieID = Convert.ToInt32(dr["MovieID"]);
-                model.MovieName = Convert.ToString(dr["MovieName"]);
-                model.MovieTitle = Convert.ToString(dr["MovieTitle"]);
-                model.MovieContent = Convert.ToString(dr["MovieContent"]);
-                lst.Add(model);
+            //List<MovieModel> lst = new List<MovieModel>();
+            //foreach(DataRow dr in dt.Rows)
+            //{
+            //    MovieModel model = new MovieModel();
+            //    model.MovieID = Convert.ToInt32(dr["MovieID"]);
+            //    model.MovieName = Convert.ToString(dr["MovieName"]);
+            //    model.MovieTitle = Convert.ToString(dr["MovieTitle"]);
+            //    model.MovieContent = Convert.ToString(dr["MovieContent"]);
+            //    lst.Add(model);
 
-            }
+            //}
+            //return Ok(lst);
+
+            List<MovieModel> lst= dt.AsEnumerable().Select(dr=>new MovieModel
+            {
+                MovieID = Convert.ToInt32(dr["MovieID"]),
+                MovieName = Convert.ToString(dr["MovieName"]),
+                MovieTitle = Convert.ToString(dr["MovieTitle"]),
+                MovieContent = Convert.ToString(dr["MovieContent"])
+            }).ToList();
+
             return Ok(lst);
         }
     }
