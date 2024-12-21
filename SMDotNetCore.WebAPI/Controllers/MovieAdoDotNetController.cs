@@ -6,6 +6,7 @@ using Microsoft.Data.SqlClient;
 using SMDotNetCore.WebAPI.Model;
 
 
+
 namespace SMDotNetCore.WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -77,6 +78,32 @@ namespace SMDotNetCore.WebAPI.Controllers
                 MovieContent = Convert.ToString(dr["MovieContent"])
             };
             return Ok(item);
+        }
+
+        [HttpPost]
+        public IActionResult CreateMovie (MovieModel model)
+        {
+            string query = @"INSERT INTO [dbo].[Tbl_Movie]
+           ([MovieName]
+           ,[MovieTitle]
+           ,[MovieContent])
+     VALUES
+           (@MovieName
+           ,@MovieTitle
+           ,@MovieContent)";
+            SqlConnection connection = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+           
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@MovieName", model.MovieName);
+            cmd.Parameters.AddWithValue("@MovieTitle", model.MovieTitle);
+            cmd.Parameters.AddWithValue("@MovieContent", model.MovieContent);
+            int result = cmd.ExecuteNonQuery();
+            connection.Close();
+
+            string message = result > 0 ? "Saving succeed" : "Saving Failed";
+            return Ok(message);
+
         }
     }
 }
