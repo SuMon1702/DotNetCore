@@ -79,9 +79,9 @@ namespace SMDotNetCore.WebAPI.Controllers
                 item.MovieTitle= model.MovieTitle;
             }
 
-            if (!string.IsNullOrEmpty(model.MovieContent))
+            if(!string.IsNullOrEmpty(model.MovieContent))
             {
-                item.MovieContent = model.MovieContent;
+               item.MovieContent= model.MovieContent;
             }
 
             var result = _context.SaveChanges();
