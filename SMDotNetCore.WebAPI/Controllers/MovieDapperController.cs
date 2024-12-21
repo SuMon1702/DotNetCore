@@ -80,7 +80,7 @@ namespace SMDotNetCore.WebAPI.Controllers
 
         [HttpPatch("{id}")]
 
-        public IActionResult PatchMovie(int id, MovieModel movie)
+        public IActionResult PatchMovie(int id, MovieModel model)
         {
             var item = FindById(id);
             if (item == null)
@@ -89,26 +89,26 @@ namespace SMDotNetCore.WebAPI.Controllers
             }
 
             string conditions= string.Empty;
-            if(!string.IsNullOrEmpty(movie.MovieName))
+            if(!string.IsNullOrEmpty(model.MovieName))
             {
                 conditions += "[MovieName] =@MovieName,";
             }
-            if (!string.IsNullOrEmpty(movie.MovieTitle))
+            if (!string.IsNullOrEmpty(model.MovieTitle))
             {
                 conditions += "[MovieTitle] =@MovieTitle,";
             }
-            if (!string.IsNullOrEmpty(movie.MovieContent))
+            if (!string.IsNullOrEmpty(model.MovieContent))
             {
                 conditions += "[MovieContent] =@MovieContent,";
             }
             conditions= conditions.Substring(0, conditions.Length - 1);
-            movie.MovieID = id;
+            model.MovieID = id;
             string query = $@"UPDATE [dbo].[Tbl_Movie]
    SET {conditions}
  WHERE MovieID= @MovieID;";
 
             using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, movie);
+            int result = db.Execute(query, model);
 
             string message = result > 0 ? "Updating Successful" : "Updating Failed";
             return Ok(message);
