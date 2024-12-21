@@ -12,7 +12,7 @@ namespace SMDotNetCore.WebAPI
             InitialCatalog = "SMDotNetTrainingDB",
             UserID = "sa",
             Password = "sasa@123",
-            TrustServerCertificate = true
+            
         };
     }
 }
