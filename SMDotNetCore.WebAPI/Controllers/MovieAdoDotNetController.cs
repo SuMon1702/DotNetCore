@@ -132,7 +132,55 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        
+        [HttpPatch("{id}")]
+        public IActionResult UpdateMovies(int id, MovieModel model)
+        {
+            string conditions = string.Empty;
+            if (!string.IsNullOrEmpty(model.MovieName))
+            {
+                conditions += "[MovieName] =@MovieName,";
+            }
+            if (!string.IsNullOrEmpty(model.MovieTitle))
+            {
+                conditions += "[MovieTitle] =@MovieTitle,";
+            }
+            if (!string.IsNullOrEmpty(model.MovieContent))
+            {
+                conditions += "[MovieContent] =@MovieContent,";
+            }
+            if (conditions.Length == 0)
+            {
+                return BadRequest("Invalid");
+            }
+            conditions = conditions.Substring(0, conditions.Length - 1);
+            model.MovieID = id;
+            string query = $@"UPDATE [dbo].[Tbl_Movie]
+   SET {conditions}
+ WHERE MovieID= @MovieID;";
+            SqlConnection connection = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@MovieID", model.MovieID);
+            if (!string.IsNullOrEmpty(model.MovieName))
+            {
+                cmd.Parameters.AddWithValue("@MovieName", model.MovieName);
+            }
+            if (!string.IsNullOrEmpty(model.MovieTitle))
+            { 
+            cmd.Parameters.AddWithValue("@MovieTitle", model.MovieTitle);
+            }
+            if (!string.IsNullOrEmpty(model.MovieContent))
+            {
+                cmd.Parameters.AddWithValue("@MovieContent", model.MovieContent);
+            }
+            int result = cmd.ExecuteNonQuery();
+
+
+            connection.Close();
+            string message = result > 0 ? "Updating Successful." : "Updating Failed.";
+            return Ok(message);
+        }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteMovie(int id)
@@ -146,13 +194,9 @@ namespace SMDotNetCore.WebAPI.Controllers
             int result = cmd.ExecuteNonQuery();
             connection.Close();
 
-
-
             string message = result > 0 ? "Delete Successful." : "Delete Failed.";
             return Ok(message);
 
-            
-           
         }
     }
 }
