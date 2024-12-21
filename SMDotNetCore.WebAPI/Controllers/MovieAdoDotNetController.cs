@@ -105,5 +105,31 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
 
         }
+
+        [HttpPut]
+        public IActionResult UpdateMovie (int id,MovieModel model)
+        {
+            
+            string query = @"UPDATE [dbo].[Tbl_Movie]
+   SET [MovieName] = @MovieName
+      ,[MovieTitle] = @MovieTitle
+      ,[MovieContent] = @MovieContent
+ WHERE MovieID= @MovieID;";
+            SqlConnection connection = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            model.MovieID = id;
+            
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@MovieID", model.MovieID);
+            cmd.Parameters.AddWithValue("@MovieName", model.MovieName);
+            cmd.Parameters.AddWithValue("@MovieTitle", model.MovieTitle);
+            cmd.Parameters.AddWithValue("@MovieContent", model.MovieContent);
+            int result = cmd.ExecuteNonQuery();
+
+
+            connection.Close();
+            string message = result > 0 ? "Updating Successful." : "Updating Failed.";
+            return Ok(message);
+        }
     }
 }
