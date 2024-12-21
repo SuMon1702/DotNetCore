@@ -178,7 +178,6 @@ namespace SMDotNetCore.WebAPI.Controllers
             }
             int result = cmd.ExecuteNonQuery();
 
-
             connection.Close();
             string message = result > 0 ? "Updating Successful." : "Updating Failed.";
             return Ok(message);
