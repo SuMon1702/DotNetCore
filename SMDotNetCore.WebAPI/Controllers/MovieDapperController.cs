@@ -78,29 +78,40 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
- //       [HttpPut("{id}")]
+        [HttpPatch("{id}")]
 
- //       public IActionResult PatchMovie(int id, MovieModel movie)
- //       {
- //           var item = FindById(id);
- //           if (item == null)
- //           {
- //               return NotFound("No data Found");
- //           }
- //           movie.MovieID = id;
+        public IActionResult PatchMovie(int id, MovieModel movie)
+        {
+            var item = FindById(id);
+            if (item == null)
+            {
+                return NotFound("No data Found");
+            }
 
- //           string query = @"UPDATE [dbo].[Tbl_Movie]
- //  SET [MovieName] = @MovieName
- //     ,[MovieTitle] = @MovieTitle
- //     ,[MovieContent] = @MovieContent
- //WHERE MovieID= @MovieID;";
+            string conditions= string.Empty;
+            if(!string.IsNullOrEmpty(movie.MovieName))
+            {
+                conditions += "[MovieName] =@MovieName";
+            }
+            if (!string.IsNullOrEmpty(movie.MovieTitle))
+            {
+                conditions += "[MovieTitle] =@MovieTitle";
+            }
+            if (!string.IsNullOrEmpty(movie.MovieContent))
+            {
+                conditions += "[MovieContent] =@MovieContent";
+            }
+            movie.MovieID = id;
+            string query = $@"UPDATE [dbo].[Tbl_Movie]
+   SET {conditions}
+ WHERE MovieID= @MovieID;";
 
- //           using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
- //           int result = db.Execute(query, movie);
+            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            int result = db.Execute(query, movie);
 
- //           string message = result > 0 ? "Updating Successful" : "Updating Failed";
- //           return Ok(message);
- //       }
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            return Ok(message);
+        }
 
         [HttpDelete("{id}")]
 
