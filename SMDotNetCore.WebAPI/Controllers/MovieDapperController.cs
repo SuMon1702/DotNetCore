@@ -91,16 +91,17 @@ namespace SMDotNetCore.WebAPI.Controllers
             string conditions= string.Empty;
             if(!string.IsNullOrEmpty(movie.MovieName))
             {
-                conditions += "[MovieName] =@MovieName";
+                conditions += "[MovieName] =@MovieName,";
             }
             if (!string.IsNullOrEmpty(movie.MovieTitle))
             {
-                conditions += "[MovieTitle] =@MovieTitle";
+                conditions += "[MovieTitle] =@MovieTitle,";
             }
             if (!string.IsNullOrEmpty(movie.MovieContent))
             {
-                conditions += "[MovieContent] =@MovieContent";
+                conditions += "[MovieContent] =@MovieContent,";
             }
+            conditions= conditions.Substring(0, conditions.Length - 1);
             movie.MovieID = id;
             string query = $@"UPDATE [dbo].[Tbl_Movie]
    SET {conditions}
