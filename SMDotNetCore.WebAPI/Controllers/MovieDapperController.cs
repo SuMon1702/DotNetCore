@@ -127,7 +127,7 @@ namespace SMDotNetCore.WebAPI.Controllers
       WHERE MovieID=@MovieID;";
 
             using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, item);
+            int result = db.Execute(query, new MovieModel { MovieID = id });
 
             string message = result > 0 ? "Delete Successful" : "Delete Failed";
             return Ok(message);
