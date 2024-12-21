@@ -6,10 +6,10 @@ namespace SMDotNetCore.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController : ControllerBase
+    public class MovieEFCoreController : ControllerBase
     {
         private readonly AppDbContext _context;
-        public MovieController()
+        public MovieEFCoreController()
         {
             _context = new AppDbContext();
         }
