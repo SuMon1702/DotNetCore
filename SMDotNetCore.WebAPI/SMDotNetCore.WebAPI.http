@@ -1,6 +1,6 @@
 @SMDotNetCore.WebAPI_HostAddress = http://localhost:5090
 
 GET {{SMDotNetCore.WebAPI_HostAddress}}/weatherforecast/
-Accept: application/json,
+Accept: application/json
 
 ###
