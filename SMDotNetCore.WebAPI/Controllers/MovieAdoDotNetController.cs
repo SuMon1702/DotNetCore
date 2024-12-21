@@ -150,7 +150,7 @@ namespace SMDotNetCore.WebAPI.Controllers
             }
             if (conditions.Length == 0)
             {
-                return NotFound("Invalid");
+                return BadRequest("Invalid");
             }
             conditions = conditions.Substring(0, conditions.Length - 1);
             model.MovieID = id;
