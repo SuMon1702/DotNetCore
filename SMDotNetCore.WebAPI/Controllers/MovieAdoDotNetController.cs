@@ -131,5 +131,28 @@ namespace SMDotNetCore.WebAPI.Controllers
             string message = result > 0 ? "Updating Successful." : "Updating Failed.";
             return Ok(message);
         }
+
+        
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteMovie(int id)
+        {
+            string query = @"DELETE FROM [dbo].[Tbl_Movie]
+      WHERE MovieID=@MovieID;";
+            SqlConnection connection = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@MovieID", id);
+            int result = cmd.ExecuteNonQuery();
+            connection.Close();
+
+
+
+            string message = result > 0 ? "Delete Successful." : "Delete Failed.";
+            return Ok(message);
+
+            
+           
+        }
     }
 }
