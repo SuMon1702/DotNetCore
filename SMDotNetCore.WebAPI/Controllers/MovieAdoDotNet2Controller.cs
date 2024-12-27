@@ -81,19 +81,14 @@ namespace SMDotNetCore.WebAPI.Controllers
       ,[MovieTitle] = @MovieTitle
       ,[MovieContent] = @MovieContent
  WHERE MovieID= @MovieID;";
-            SqlConnection connection = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            model.MovieID = id;
-            
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@MovieID", model.MovieID);
-            cmd.Parameters.AddWithValue("@MovieName", model.MovieName);
-            cmd.Parameters.AddWithValue("@MovieTitle", model.MovieTitle);
-            cmd.Parameters.AddWithValue("@MovieContent", model.MovieContent);
-            int result = cmd.ExecuteNonQuery();
 
+            int result = _adoDotNetService.Execute(query,
+                new AdoDotNetParameter("@MovieID", id),
+                new AdoDotNetParameter("@MovieName", model.MovieName),
+                new AdoDotNetParameter("@MovieTitle", model.MovieTitle),
+                new AdoDotNetParameter("@MovieContent", model.MovieContent)
+                );
 
-            connection.Close();
             string message = result > 0 ? "Updating Successful." : "Updating Failed.";
             return Ok(message);
         }
