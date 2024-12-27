@@ -108,8 +108,7 @@ namespace SMDotNetCore.WebAPI.Controllers
    SET {conditions}
  WHERE MovieID= @MovieID;";
 
-            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, model);
+            int result = _dapperService.Execute(query, model);
 
             string message = result > 0 ? "Updating Successful" : "Updating Failed";
             return Ok(message);
