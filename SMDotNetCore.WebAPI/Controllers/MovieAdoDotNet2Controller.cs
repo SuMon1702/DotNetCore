@@ -60,15 +60,12 @@ namespace SMDotNetCore.WebAPI.Controllers
            (@MovieName
            ,@MovieTitle
            ,@MovieContent)";
-            SqlConnection connection = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-           
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@MovieName", model.MovieName);
-            cmd.Parameters.AddWithValue("@MovieTitle", model.MovieTitle);
-            cmd.Parameters.AddWithValue("@MovieContent", model.MovieContent);
-            int result = cmd.ExecuteNonQuery();
-            connection.Close();
+
+            int result = _adoDotNetService.Execute(query,
+                new AdoDotNetParameter("@MovieName", model.MovieName),
+                new AdoDotNetParameter("@MovieTitle", model.MovieTitle),
+                new AdoDotNetParameter("@MovieContent", model.MovieContent)
+                );
 
             string message = result > 0 ? "Saving succeed" : "Saving Failed";
             return Ok(message);
