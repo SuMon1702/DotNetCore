@@ -152,7 +152,7 @@ namespace SMDotNetCore.WebAPI.Controllers
             {
                 return BadRequest("Invalid");
             }
-            conditions = conditions.Substring(0, conditions.Length - 1);
+            conditions = conditions.Substring(0, conditions.Length - 2);
             model.MovieID = id;
 
 
