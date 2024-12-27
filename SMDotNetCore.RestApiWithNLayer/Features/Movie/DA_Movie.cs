@@ -1,6 +1,5 @@
 ﻿
 using SMDotNetCore.RestApiWithNLayer.Model;
-using System.Collections.Generic;
 using SMDotNetCore.RestApiWithNLayer.DB;
 
 
