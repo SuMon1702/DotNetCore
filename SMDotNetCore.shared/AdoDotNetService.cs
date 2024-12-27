@@ -69,6 +69,21 @@ namespace SMDotNetCore.shared
             
         }
 
+        public int Execute(string query, params AdoDotNetParameter[]? parameters)
+        {
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            using SqlCommand command = new SqlCommand(query, connection);
+            if (parameters != null && parameters.Length > 0)
+            {
+                var ParametersArray = parameters.Select(item => new SqlParameter(item.Name, item.Value)).ToArray();
+                command.Parameters.AddRange(ParametersArray);
+            }
+            var result = command.ExecuteNonQuery();
+            connection.Close();
+            return result;
+        }
+
 
 
 
