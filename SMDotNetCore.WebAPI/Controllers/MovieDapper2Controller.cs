@@ -50,8 +50,7 @@ namespace SMDotNetCore.WebAPI.Controllers
            ,@MovieTitle
            ,@MovieContent)";
 
-            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, movie);
+           int result = _dapperService.Execute(query, movie);
 
             string message = result > 0 ? "Saving Successful." : "Saving Failed.";
             return Ok(message);
