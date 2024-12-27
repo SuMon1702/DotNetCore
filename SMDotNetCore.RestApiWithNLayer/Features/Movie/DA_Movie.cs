@@ -21,6 +21,12 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Blog
             return lst;
         }
 
+        public MovieModel GetMovie(int id)
+        {
+            var item = _appDbContext.Movies.FirstOrDefault(x => x.MovieID == id);
+            return item;
+        }
+
         
     }
 
