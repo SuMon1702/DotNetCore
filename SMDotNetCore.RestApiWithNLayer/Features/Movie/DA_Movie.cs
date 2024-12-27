@@ -50,7 +50,18 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Blog
             return result;
         }
 
-        
+        public int DeleteMovie(int id)
+        {
+            var item = _appDbContext.Movies.FirstOrDefault(x => x.MovieID == id);
+            if (item is null)
+            {
+                return 0;
+            }
+
+            _appDbContext.Movies.Remove(item);
+            var result = _appDbContext.SaveChanges();
+            return result;
+        }
     }
 
 }
