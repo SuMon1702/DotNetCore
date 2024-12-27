@@ -11,8 +11,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<AdoDotNetService>();
-builder.Services.AddScoped<DapperService>();
+string connectionString = builder.Configuration.GetConnectionString("DbConnection")!;
+
+builder.Services.AddScoped(n => new AdoDotNetService(connectionString));
+builder.Services.AddScoped(n => new DapperService(connectionString));
 
 
 
