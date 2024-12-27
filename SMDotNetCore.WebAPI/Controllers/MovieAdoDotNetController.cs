@@ -106,7 +106,7 @@ namespace SMDotNetCore.WebAPI.Controllers
 
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public IActionResult UpdateMovie (int id,MovieModel model)
         {
             
