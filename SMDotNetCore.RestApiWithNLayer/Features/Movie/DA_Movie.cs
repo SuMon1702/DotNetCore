@@ -27,6 +27,13 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Blog
             return item;
         }
 
+        public int CreateMovie(MovieModel requestModel)
+        {
+            _appDbContext.Movies.Add(requestModel);
+            var result = _appDbContext.SaveChanges();
+            return result;
+        }
+
         
     }
 
