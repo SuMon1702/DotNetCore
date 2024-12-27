@@ -9,7 +9,7 @@ namespace SMDotNetCore.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieDapperController : ControllerBase
+    public class MovieDapperController1 : ControllerBase
     {
         [HttpGet]
         public IActionResult GetMovies()
