@@ -126,8 +126,7 @@ namespace SMDotNetCore.WebAPI.Controllers
             string query = @"DELETE FROM [dbo].[Tbl_Movie]
       WHERE MovieID=@MovieID;";
 
-            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            int result = db.Execute(query, new MovieModel { MovieID=id});
+            int result = _dapperService.Execute(query, new { MovieID = id });
 
             string message = result > 0 ? "Delete Successful" : "Delete Failed";
             return Ok(message);
