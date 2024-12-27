@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SMDotNetCore.WebAPI.Model;
 
 namespace SMDotNetCore.WebAPI.Controllers

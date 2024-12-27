@@ -1,10 +1,6 @@
-﻿using Dapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Mvc;
 using SMDotNetCore.shared;
 using SMDotNetCore.WebAPI.Model;
-using System.Data;
 
 namespace SMDotNetCore.WebAPI.Controllers
 {
