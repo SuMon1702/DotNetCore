@@ -11,6 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<AdoDotNetService>();
+builder.Services.AddScoped<DapperService>();
+
+
+
 
 var app = builder.Build();
 
