@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "README.md", "README.md", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDotNetCore.WebAPI", "SMDotNetCore.WebAPI\SMDotNetCore.WebAPI.csproj", "{D1E94C82-74E1-4699-97D0-58D5E9078EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMDotNetCore.shared", "SMDotNetCore.shared\SMDotNetCore.shared.csproj", "{767AA10C-910E-406C-8729-64A82679ABB7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMDotNetCore.shared", "SMDotNetCore.shared\SMDotNetCore.shared.csproj", "{530985C6-1617-4822-B923-1D4C323C5DF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,10 @@ Global
 		{D1E94C82-74E1-4699-97D0-58D5E9078EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1E94C82-74E1-4699-97D0-58D5E9078EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1E94C82-74E1-4699-97D0-58D5E9078EBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{767AA10C-910E-406C-8729-64A82679ABB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{767AA10C-910E-406C-8729-64A82679ABB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{767AA10C-910E-406C-8729-64A82679ABB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{767AA10C-910E-406C-8729-64A82679ABB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{530985C6-1617-4822-B923-1D4C323C5DF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{530985C6-1617-4822-B923-1D4C323C5DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{530985C6-1617-4822-B923-1D4C323C5DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{530985C6-1617-4822-B923-1D4C323C5DF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
