@@ -1,5 +1,4 @@
-﻿
-using SMDotNetCore.RestApiWithNLayer.Model;
+﻿using SMDotNetCore.RestApiWithNLayer.Model;
 using SMDotNetCore.RestApiWithNLayer.DB;
 
 
