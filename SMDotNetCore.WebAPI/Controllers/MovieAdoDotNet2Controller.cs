@@ -81,14 +81,13 @@ namespace SMDotNetCore.WebAPI.Controllers
       ,[MovieTitle] = @MovieTitle
       ,[MovieContent] = @MovieContent
  WHERE MovieID= @MovieID;";
-
-            int result = _adoDotNetService.Execute(query,
+            
+            int result= _adoDotNetService.Execute(query,
                 new AdoDotNetParameter("@MovieID", id),
                 new AdoDotNetParameter("@MovieName", model.MovieName),
                 new AdoDotNetParameter("@MovieTitle", model.MovieTitle),
                 new AdoDotNetParameter("@MovieContent", model.MovieContent)
                 );
-
             string message = result > 0 ? "Updating Successful." : "Updating Failed.";
             return Ok(message);
         }
@@ -96,50 +95,40 @@ namespace SMDotNetCore.WebAPI.Controllers
         [HttpPatch("{id}")]
         public IActionResult UpdateMovies(int id, MovieModel model)
         {
+            List<AdoDotNetParameter> lst = new List<AdoDotNetParameter>();
             string conditions = string.Empty;
             if (!string.IsNullOrEmpty(model.MovieName))
             {
                 conditions += "[MovieName] =@MovieName,";
+                lst.Add("@MovieName", model.MovieName);
             }
             if (!string.IsNullOrEmpty(model.MovieTitle))
             {
                 conditions += "[MovieTitle] =@MovieTitle,";
+                lst.Add("@MovieTitle", model.MovieTitle);
             }
             if (!string.IsNullOrEmpty(model.MovieContent))
             {
                 conditions += "[MovieContent] =@MovieContent,";
+                lst.Add("@MovieContent", model.MovieContent);
             }
             if (conditions.Length == 0)
             {
+                var response = new { IsSuccess = false, Message = "No data found." };
                 return BadRequest("Invalid");
             }
-            conditions = conditions.Substring(0, conditions.Length - 2);
+            lst.Add(new AdoDotNetParameter("@MovieID", id));
+
+            conditions = conditions.Substring(0, conditions.Length - 1);
             model.MovieID = id;
 
 
             string query = $@"UPDATE [dbo].[Tbl_Movie]
    SET {conditions}
  WHERE MovieID= @MovieID;";
-            SqlConnection connection = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
 
-            SqlCommand cmd = new SqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@MovieID", model.MovieID);
-            if (!string.IsNullOrEmpty(model.MovieName))
-            {
-                cmd.Parameters.AddWithValue("@MovieName", model.MovieName);
-            }
-            if (!string.IsNullOrEmpty(model.MovieTitle))
-            { 
-            cmd.Parameters.AddWithValue("@MovieTitle", model.MovieTitle);
-            }
-            if (!string.IsNullOrEmpty(model.MovieContent))
-            {
-                cmd.Parameters.AddWithValue("@MovieContent", model.MovieContent);
-            }
-            int result = cmd.ExecuteNonQuery();
+            int result = _adoDotNetService.Execute(query, lst.ToArray());
 
-            connection.Close();
             string message = result > 0 ? "Updating Successful." : "Updating Failed.";
             return Ok(message);
         }
