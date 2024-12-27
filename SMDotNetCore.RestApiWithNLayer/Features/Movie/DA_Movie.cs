@@ -34,6 +34,22 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Blog
             return result;
         }
 
+        public int UpdateMovie(int id, MovieModel requestModel)
+        {
+            var item = _appDbContext.Movies.FirstOrDefault(x => x.MovieID == id);
+            if (item is  null)
+            {
+                return 0;
+            }
+
+            item.MovieName = requestModel.MovieName;
+            item.MovieTitle = requestModel.MovieTitle;
+            item.MovieContent = requestModel.MovieContent;
+
+            var result = _appDbContext.SaveChanges();
+            return result;
+        }
+
         
     }
 
