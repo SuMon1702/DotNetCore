@@ -19,8 +19,8 @@ namespace SMDotNetCore.WebAPI.Controllers
         public IActionResult GetMovies()
         {
             string query = "select * from Tbl_Movie";
-            var lst2 = _dapperService.Query<MovieModel>(query);
-            return Ok(lst2);
+            var lst = _dapperService.Query<MovieModel>(query);
+            return Ok(lst);
 
         }
 
@@ -140,8 +140,8 @@ namespace SMDotNetCore.WebAPI.Controllers
         private MovieModel? FindById(int id)
         {
             string query = "select * from Tbl_Movie where MovieId = @MovieID";
-            using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
-            var item = db.Query<MovieModel>(query, new MovieModel { MovieID = id }).FirstOrDefault();
+            
+            var item = _dapperService.QueryFirstOrDefault<MovieModel>(query, new { MovieID = id });
             return item;
         }
     }
