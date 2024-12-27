@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using System.Data;
+using static SMDotNetCore.shared.AdoDotNetService;
 
 namespace SMDotNetCore.shared
 {
@@ -92,6 +93,16 @@ namespace SMDotNetCore.shared
             }
             public string Name { get; set; }
             public object Value { get; set; }
+        }
+
+        
+    }
+    public static class AdoDotNetParameterListExtension
+    {
+        public static List<AdoDotNetParameter> Add(this List<AdoDotNetParameter> lst, string name, object value)
+        {
+            lst.Add(new AdoDotNetParameter(name, value));
+            return lst;
         }
     }
 }
