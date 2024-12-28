@@ -1,4 +1,5 @@
 ﻿using SMDotNetCore.RestApiWithNLayer.Features.Blog;
+using SMDotNetCore.RestApiWithNLayer.Model;
 
 namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
 {
@@ -10,5 +11,25 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
         {
             _daMovie = new DA_Movie();
         }
+
+        public List<MovieModel> GetMovies()
+        {
+            var lst = _daMovie.GetMovies();
+            return lst;
+        }
+
+        public MovieModel GetMovie(int id)
+        {
+            var item = _daMovie.GetMovie(id);
+            return item;
+        }
+
+        public int CreateMovie(MovieModel requestModel)
+        {
+            var result = _daMovie.CreateMovie(requestModel);
+            return result;
+        }
+
+
     }
 }
