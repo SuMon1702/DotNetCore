@@ -30,6 +30,12 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
             return result;
         }
 
+        public int UpdateMovie(int id, MovieModel requestModel)
+        {
+            var result = _daMovie.UpdateMovie(id, requestModel);
+            return result;
+        }
+
 
     }
 }
