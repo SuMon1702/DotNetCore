@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SMDotNetCore.RestApiWithNLayer.Model;
 
 namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
 {
@@ -18,6 +19,20 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
         {
             var lst = _blMovie.GetMovies();
             return Ok(lst);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetMovie(int id)
+        {
+            var item = _blMovie.GetMovie(id);
+            return Ok(item);
+        }
+
+        [HttpPost]
+        public IActionResult CreateMovie([FromBody] MovieModel requestModel)
+        {
+            var result = _blMovie.CreateMovie(requestModel);
+            return Ok(result);
         }
 
         
