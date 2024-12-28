@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SMDotNetCore.RestApiWithNLayer.Model;
 
 namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
@@ -15,38 +16,59 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
         }
 
         [HttpGet]
-        public IActionResult GetMovies()
+        public IActionResult Read()
         {
             var lst = _blMovie.GetMovies();
             return Ok(lst);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetMovie(int id)
+        public IActionResult Edit(int id)
         {
             var item = _blMovie.GetMovie(id);
+            if (item is null)
+            {
+                return NotFound("No data found");
+            }
             return Ok(item);
         }
 
         [HttpPost]
-        public IActionResult CreateMovie([FromBody] MovieModel requestModel)
+        public IActionResult Create(MovieModel model)
         {
-            var result = _blMovie.CreateMovie(requestModel);
-            return Ok(result);
+            var result= _blMovie.CreateMovie(model);
+            string message = result > 0 ? "Saving Successful" : "Saving Failed";
+            return Ok(message);
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateMovie(int id, [FromBody] MovieModel requestModel)
+        public IActionResult Update(int id, MovieModel model)
         {
-            var result = _blMovie.UpdateMovie(id, requestModel);
-            return Ok(result);
+            var item = _blMovie.GetMovie(id);
+            if (item is null)
+            {
+                return NotFound("No data found");
+            }
+
+            var result = _blMovie.UpdateMovie(id, model);
+
+            string message = result > 0 ? "Updating Successful" : "Updating Failed";
+            return Ok(message);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteMovie(int id)
+        public IActionResult Delete(int id)
         {
+            var item = _blMovie.GetMovie(id);
+            if (item is null)
+            {
+                return NotFound("No data found");
+            }
+
             var result = _blMovie.DeleteMovie(id);
-            return Ok(result);
+
+            string message = result > 0 ? "Deleting Successful" : "Deleting Failed";
+            return Ok(message);
         }
     }
 }
