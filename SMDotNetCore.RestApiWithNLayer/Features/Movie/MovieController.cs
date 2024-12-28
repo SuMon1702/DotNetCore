@@ -35,6 +35,13 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
             return Ok(result);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult UpdateMovie(int id, [FromBody] MovieModel requestModel)
+        {
+            var result = _blMovie.UpdateMovie(id, requestModel);
+            return Ok(result);
+        }
+
         
     }
 }
