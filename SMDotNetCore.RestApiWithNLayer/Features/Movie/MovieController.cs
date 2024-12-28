@@ -42,6 +42,11 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
             return Ok(result);
         }
 
-        
+        [HttpDelete("{id}")]
+        public IActionResult DeleteMovie(int id)
+        {
+            var result = _blMovie.DeleteMovie(id);
+            return Ok(result);
+        }
     }
 }
