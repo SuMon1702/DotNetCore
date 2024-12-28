@@ -36,6 +36,12 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
             return result;
         }
 
+        public int DeleteMovie(int id)
+        {
+            var result = _daMovie.DeleteMovie(id);
+            return result;
+        }
+
 
     }
 }
