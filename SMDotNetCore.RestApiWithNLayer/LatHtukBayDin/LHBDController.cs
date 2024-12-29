@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace SMDotNetCore.RestApiWithNLayer.LatHtukBayDin
 {
@@ -7,12 +8,18 @@ namespace SMDotNetCore.RestApiWithNLayer.LatHtukBayDin
     [ApiController]
     public class LHBDController : ControllerBase
     {
+        private async Task<LatHtukBayDinModel> GetDataAsync()
+        {
+            string jsonStr = await System.IO.File.ReadAllTextAsync("data.json");
+            var model = JsonConvert.DeserializeObject<LatHtukBayDinModel>(jsonStr);
+            return model;
+        }
     }
 }
 
 
 
-public class LatHtukBayDin
+public class LatHtukBayDinModel
 {
     public Question[] questions { get; set; }
     public Answer[] answers { get; set; }
