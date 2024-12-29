@@ -1,7 +1,14 @@
 ﻿
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+
+
 Console.WriteLine("Hello, World!");
 
 string jsonStr = await File.ReadAllTextAsync("data.json");
+var model= JsonConvert.DeserializeObject<MainDto>(jsonStr);
+
+
 Console.WriteLine(jsonStr);
 
 
