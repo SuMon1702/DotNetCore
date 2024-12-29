@@ -14,6 +14,8 @@ namespace SMDotNetCore.RestApiWithNLayer.LatHtukBayDin
             var model = JsonConvert.DeserializeObject<LatHtukBayDinModel>(jsonStr);
             return model;
         }
+
+
     }
 }
 

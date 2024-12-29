@@ -9,7 +9,12 @@ string jsonStr = await File.ReadAllTextAsync("data.json");
 var model= JsonConvert.DeserializeObject<MainDto>(jsonStr);
 
 
-Console.WriteLine(jsonStr);
+foreach (var item in model.questions)
+{
+    Console.WriteLine(item.questionNo);
+}
+
+//Console.WriteLine(jsonStr);
 
 
 
