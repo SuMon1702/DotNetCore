@@ -15,7 +15,13 @@ namespace SMDotNetCore.RestApiWithNLayer.LatHtukBayDin
             return model;
         }
 
+        [HttpGet("questions")]
+        public async Task<IActionResult> Question()
+        {
+            var model= await GetDataAsync();
+            return Ok(model.questions);
 
+        }
     }
 }
 
