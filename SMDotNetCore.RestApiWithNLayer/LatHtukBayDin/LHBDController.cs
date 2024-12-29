@@ -30,11 +30,11 @@ namespace SMDotNetCore.RestApiWithNLayer.LatHtukBayDin
             return Ok(model.numberList);
         }
 
-        [HttpGet("{questionNo}/{answerNo}")]
-        public async Task<IActionResult> Answer(int questionNo, int answerNo)
+        [HttpGet("{QuestionNo}/{AnswerNo}")]
+        public async Task<IActionResult> Answer(int QuestionNo, int AnswerNo)
         {
             var model = await GetDataAsync();
-            return Ok(model.answers.FirstOrDefault(x => x.questionNo == questionNo && x.answerNo == answerNo));
+            return Ok(model.answers.FirstOrDefault(x => x.questionNo == QuestionNo && x.answerNo == AnswerNo));
         }
     }
 
