@@ -9,12 +9,25 @@ string jsonStr = await File.ReadAllTextAsync("data.json");
 var model= JsonConvert.DeserializeObject<MainDto>(jsonStr);
 
 
+//Question Number ty ko swl htoke trr
 foreach (var item in model.questions)
 {
     Console.WriteLine(item.questionNo);
 }
 
-//Console.WriteLine(jsonStr);
+Console.WriteLine(jsonStr);
+
+//Change Myan Number to English Number
+static string MyanToEng(string num)
+{
+    num = num.Replace("၀", "0");
+    num = num.Replace("၁", "1");
+    num = num.Replace("၂", "2");
+    num = num.Replace("၃", "3");
+    num = num.Replace("၄", "4");
+
+    return num;
+}
 
 
 
