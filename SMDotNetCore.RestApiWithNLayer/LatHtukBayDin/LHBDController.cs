@@ -22,6 +22,13 @@ namespace SMDotNetCore.RestApiWithNLayer.LatHtukBayDin
             return Ok(model.questions);
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> NumberList()
+        {
+            var model= await GetDataAsync();
+            return Ok(model.numberList);
+        }
     }
 }
 
