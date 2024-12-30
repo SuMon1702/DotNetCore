@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 Console.WriteLine("Hello, World!");
 
 //HttpClient client = new HttpClient();
-//try
+
 //{
 //    var response = await client.GetAsync("https://localhost:7294/api/MovieEFCore");
 //    if (response.IsSuccessStatusCode)
@@ -26,11 +26,8 @@ Console.WriteLine("Hello, World!");
 //    {
 //        Console.WriteLine("Failed to get data");
 //    }
-//}
-//catch (HttpRequestException ex)
-//{
-//    Console.WriteLine($"Request failed: {ex.Message}");
-//}
+
+
 
 HttpClientExample httpClientExample = new HttpClientExample();
 await httpClientExample.RunAsync();
