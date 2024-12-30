@@ -10,13 +10,13 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
         private readonly string _blogEndpoint = "/api/MovieEFCore";
         public async Task RunAsync()
         {
-            //await ReadAsync();
+            await ReadAsync();
             //await EditAsync(1);
             //await EditAsync(11);
 
             //await CreateAsync("John", "Action", "Watch");
             // await UpdateAsync(1, "BabyJohn", "Action", "Watch");
-            await DeleteAsync(2030);
+          //await DeleteAsync(2030);
         }
 
         private async Task ReadAsync()
