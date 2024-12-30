@@ -88,6 +88,30 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
         }
 
 
+        private async Task UpdateAsync(int id, string name, string title, string content)
+        {
+            MovieModel movieModel = new MovieModel()
+            {
+                MovieName = name,
+                MovieTitle = title,
+                MovieContent = content
+            };
+
+            string blogJson = JsonConvert.SerializeObject(movieModel);
+            HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
+            var response = await _client.PutAsync($"{_blogEndpoint}/{id}", httpContent);
+            if (response.IsSuccessStatusCode)
+            {
+                string message = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(message);
+            }
+            else
+            {
+                Console.WriteLine("Failed to update");
+            }
+        }
+
+
 
 
 
