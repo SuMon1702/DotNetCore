@@ -19,6 +19,7 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
           //await DeleteAsync(2030);
         }
 
+
         private async Task ReadAsync()
         {
             var response = await _client.GetAsync(_blogEndpoint);
