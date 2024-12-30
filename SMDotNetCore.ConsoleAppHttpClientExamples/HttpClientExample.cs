@@ -139,20 +139,27 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
 
         private async Task DeleteAsync(int id)
         {
-            var response = await _client.DeleteAsync($"{_blogEndpoint}/{id}");
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string message = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(message);
-                //other process
-                //continue
+                var response = await _client.DeleteAsync($"{_blogEndpoint}/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string message = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(message);
+                    //other process
+                    //continue
+                }
+                else
+                {
+                    string message = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(message);
+                    //error message
+                    //continue
+                }
             }
-            else
+            catch (HttpRequestException ex)
             {
-                string message = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(message);
-                //error message
-                //continue
+                Console.WriteLine($"Request failed: {ex.Message}");
             }
         }
 
