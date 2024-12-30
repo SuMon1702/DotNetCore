@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SMDotNetCore.RestApiWithNLayer.Model;
 
 namespace SMDotNetCore.RestApiWithNLayer.Features.Movie
