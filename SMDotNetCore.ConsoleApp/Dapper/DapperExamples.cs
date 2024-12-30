@@ -1,12 +1,6 @@
 ﻿using Dapper;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using SMDotNetCore.ConsoleApp.Models;
 using SMDotNetCore.ConsoleApp.Appsettings;
 
