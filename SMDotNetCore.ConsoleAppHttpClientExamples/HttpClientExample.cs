@@ -14,6 +14,8 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
         public async Task RunAsync()
         {
             await ReadAsync();
+            await EditAsync(1);
+            await EditAsync(11);
         }
 
         private async Task ReadAsync()
@@ -37,6 +39,29 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
                 Console.WriteLine("Failed to get data");
             }
         }
+
+        private async Task EditAsync(int id)
+        {
+            var response = await _client.GetAsync($"{_blogEndpoint}/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonStr = await response.Content.ReadAsStringAsync();
+                MovieModel movie = JsonConvert.DeserializeObject<MovieModel>(jsonStr)!;
+
+                Console.WriteLine(JsonConvert.SerializeObject(movie));
+                Console.WriteLine($"Name=>{movie.MovieName}");
+                Console.WriteLine($"Title=>{movie.MovieTitle}");
+                Console.WriteLine($"Content=>{movie.MovieContent}");
+            }
+            else
+            {
+                Console.WriteLine("Failed to get data");
+            }
+        }
+
+
+
+
     }
 }
 
