@@ -22,23 +22,30 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
 
         private async Task ReadAsync()
         {
-            var response = await _client.GetAsync(_blogEndpoint);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string jsonStr = await response.Content.ReadAsStringAsync();
-                List<MovieModel> lst = JsonConvert.DeserializeObject<List<MovieModel>>(jsonStr)!;
-
-                foreach (var movie in lst)
+                var response = await _client.GetAsync(_blogEndpoint);
+                if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine(JsonConvert.SerializeObject(movie));
-                    Console.WriteLine($"Name=>{movie.MovieName}");
-                    Console.WriteLine($"Title=>{movie.MovieTitle}");
-                    Console.WriteLine($"Content=>{movie.MovieContent}");
+                    string jsonStr = await response.Content.ReadAsStringAsync();
+                    List<MovieModel> lst = JsonConvert.DeserializeObject<List<MovieModel>>(jsonStr)!;
+
+                    foreach (var movie in lst)
+                    {
+                        Console.WriteLine(JsonConvert.SerializeObject(movie));
+                        Console.WriteLine($"Name=>{movie.MovieName}");
+                        Console.WriteLine($"Title=>{movie.MovieTitle}");
+                        Console.WriteLine($"Content=>{movie.MovieContent}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Failed to get data");
                 }
             }
-            else
+            catch (HttpRequestException ex)
             {
-                Console.WriteLine("Failed to get data");
+                Console.WriteLine($"Request failed: {ex.Message}");
             }
         }
 
