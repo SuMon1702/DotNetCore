@@ -51,21 +51,28 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
 
         private async Task EditAsync(int id)
         {
-            var response = await _client.GetAsync($"{_blogEndpoint}/{id}");
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string jsonStr = await response.Content.ReadAsStringAsync();
-                MovieModel movie = JsonConvert.DeserializeObject<MovieModel>(jsonStr)!;
+                var response = await _client.GetAsync($"{_blogEndpoint}/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonStr = await response.Content.ReadAsStringAsync();
+                    MovieModel movie = JsonConvert.DeserializeObject<MovieModel>(jsonStr)!;
 
-                Console.WriteLine(JsonConvert.SerializeObject(movie));
-                Console.WriteLine($"Name=>{movie.MovieName}");
-                Console.WriteLine($"Title=>{movie.MovieTitle}");
-                Console.WriteLine($"Content=>{movie.MovieContent}");
+                    Console.WriteLine(JsonConvert.SerializeObject(movie));
+                    Console.WriteLine($"Name=>{movie.MovieName}");
+                    Console.WriteLine($"Title=>{movie.MovieTitle}");
+                    Console.WriteLine($"Content=>{movie.MovieContent}");
+                }
+                else
+                {
+                    string message = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(message);
+                }
             }
-            else
+            catch (HttpRequestException ex)
             {
-               string message= await response.Content.ReadAsStringAsync();
-                Console.WriteLine(message);
+                Console.WriteLine($"Request failed: {ex.Message}");
             }
         }
 
