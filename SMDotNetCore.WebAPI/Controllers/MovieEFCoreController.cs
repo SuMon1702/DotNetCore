@@ -37,7 +37,7 @@ namespace SMDotNetCore.WebAPI.Controllers
         {
             _context.Movies.Add(model);
             var result= _context.SaveChanges();
-            string message = result > 0 ? "Saving Successful" : "Saving Failed";
+            string message = result > 0 ? "Saving Succeed" : "Saving Failed";
             return Ok(message);
         }
 
@@ -103,8 +103,6 @@ namespace SMDotNetCore.WebAPI.Controllers
 
             string message = result > 0 ? "Deleting Successful" : "Deleting Failed";
             return Ok(message);
-
-           
         }
     }
 }
