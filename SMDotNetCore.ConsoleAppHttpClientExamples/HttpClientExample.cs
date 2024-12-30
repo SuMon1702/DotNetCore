@@ -18,8 +18,9 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
             //await EditAsync(1);
             //await EditAsync(11);
 
-            //await CreateAsync("BabyJohn", "Action", "Watch");
-            await UpdateAsync(1, "BabyJohn", "Action", "Watch");
+            //await CreateAsync("John", "Action", "Watch");
+            // await UpdateAsync(1, "BabyJohn", "Action", "Watch");
+            await DeleteAsync(2030);
         }
 
         private async Task ReadAsync()
@@ -109,6 +110,25 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
             else
             {
                 Console.WriteLine("Failed to update");
+            }
+        }
+
+        private async Task DeleteAsync(int id)
+        {
+            var response = await _client.DeleteAsync($"{_blogEndpoint}/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                string message = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(message);
+                //other process
+                //continue
+            }
+            else
+            {
+                string message = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(message);
+                //error message
+                //continue
             }
         }
 
