@@ -17,8 +17,7 @@ namespace SMDotNetCore.ConsoleApp.AdoDotNet
         };
         public void Read()
         {
-
-            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+           SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 
             connection.Open();
             Console.WriteLine("Connection opens");
@@ -28,7 +27,6 @@ namespace SMDotNetCore.ConsoleApp.AdoDotNet
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             sqlDataAdapter.Fill(dt);
-
 
             connection.Close();
             Console.WriteLine("Connection closes");
@@ -62,7 +60,6 @@ namespace SMDotNetCore.ConsoleApp.AdoDotNet
             cmd.Parameters.AddWithValue("@MovieContent", content);
             int result = cmd.ExecuteNonQuery();
 
-
             connection.Close();
             string message = result > 0 ? "Saving Successful." : "Saving Failed.";
             Console.WriteLine(message);
@@ -85,7 +82,6 @@ namespace SMDotNetCore.ConsoleApp.AdoDotNet
             cmd.Parameters.AddWithValue("@MovieContent", content);
             int result = cmd.ExecuteNonQuery();
 
-
             connection.Close();
             string message = result > 0 ? "Updating Successful." : "Updating Failed.";
             Console.WriteLine(message);
@@ -101,7 +97,6 @@ namespace SMDotNetCore.ConsoleApp.AdoDotNet
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@MovieID", id);
             int result = cmd.ExecuteNonQuery();
-
 
             connection.Close();
             string message = result > 0 ? "Delete Successful." : "Delete Failed.";
@@ -121,17 +116,13 @@ namespace SMDotNetCore.ConsoleApp.AdoDotNet
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             sqlDataAdapter.Fill(dt);
-
-
             connection.Close();
-
 
             if (dt.Rows.Count == 0)
             {
                 Console.WriteLine("No data found");
                 return;
             }
-
             DataRow dr = dt.Rows[0];
 
             Console.WriteLine("Movie ID=>" + dr["MovieID"]);
@@ -139,7 +130,6 @@ namespace SMDotNetCore.ConsoleApp.AdoDotNet
             Console.WriteLine("Movie Title=>" + dr["MovieTitle"]);
             Console.WriteLine("Movie Content=>" + dr["MovieContent"]);
             Console.WriteLine("........................");
-
         }
 
     }
