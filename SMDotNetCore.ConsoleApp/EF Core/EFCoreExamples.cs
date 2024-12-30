@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SMDotNetCore.ConsoleApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SMDotNetCore.ConsoleApp.Models;
 
 namespace SMDotNetCore.ConsoleApp
 {
@@ -14,17 +8,16 @@ namespace SMDotNetCore.ConsoleApp
         public void Run()
         {
             Read();
-            Edit(5);
-            Edit(25);
-             Create("Princess", "Fiction", "Go");
-             Update(5, "SetIt", "Romance", "WatchIt");
-            Delete(2);
+          //Edit(5);
+          //Edit(25);
+           //Create("Princess", "Fiction", "Go");
+           //Update(5, "SetIt", "Romance", "WatchIt");
+          //Delete(2);
 
         }
 
         private void Read()
         {
-            
             var lst = db.Movies.ToList();
             foreach (MovieModel item in lst)
             {
