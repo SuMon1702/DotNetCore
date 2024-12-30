@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDotNetCore.shared", "SMDo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDotNetCore.RestApiWithNLayer", "SMDotNetCore.RestApiWithNLayer\SMDotNetCore.RestApiWithNLayer.csproj", "{AC735E92-0CE8-4A26-8123-4329E7235569}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMDotNetCore.ConsoleAppHttpClient", "SMDotNetCore.ConsoleAppHttpClient\SMDotNetCore.ConsoleAppHttpClient.csproj", "{BAFDBB78-5808-4B63-A128-DC35F5A42D14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDotNetCore.ConsoleAppHttpClient", "SMDotNetCore.ConsoleAppHttpClient\SMDotNetCore.ConsoleAppHttpClient.csproj", "{BAFDBB78-5808-4B63-A128-DC35F5A42D14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMDotNetCore.ConsoleAppHttpClientExamples", "SMDotNetCore.ConsoleAppHttpClientExamples\SMDotNetCore.ConsoleAppHttpClientExamples.csproj", "{94FD3BB4-B6CE-4F99-8293-F8F09737D1F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDotNetCore.ConsoleAppHttpClientExamples", "SMDotNetCore.ConsoleAppHttpClientExamples\SMDotNetCore.ConsoleAppHttpClientExamples.csproj", "{94FD3BB4-B6CE-4F99-8293-F8F09737D1F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
