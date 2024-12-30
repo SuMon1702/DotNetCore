@@ -1,5 +1,6 @@
 ﻿
 using Newtonsoft.Json;
+using SMDotNetCore.ConsoleAppHttpClientExamples;
 using System.ComponentModel.DataAnnotations;
 
 Console.WriteLine("Hello, World!");
@@ -31,7 +32,10 @@ Console.WriteLine("Hello, World!");
 //    Console.WriteLine($"Request failed: {ex.Message}");
 //}
 
+HttpClientExample httpClientExample = new HttpClientExample();
+await httpClientExample.RunAsync();
 
+Console.ReadLine();
 
 
 
