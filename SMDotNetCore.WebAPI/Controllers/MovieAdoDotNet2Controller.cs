@@ -5,7 +5,6 @@ using SMDotNetCore.shared;
 using static SMDotNetCore.shared.AdoDotNetService;
 
 
-
 namespace SMDotNetCore.WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -20,6 +19,7 @@ namespace SMDotNetCore.WebAPI.Controllers
             _adoDotNetService = adoDotNetService;
         }
 
+
         [HttpGet]
         public ActionResult GetMovies()
         {
@@ -31,6 +31,7 @@ namespace SMDotNetCore.WebAPI.Controllers
 
             return Ok(lst);
         }
+
 
         [HttpGet("{id}")]
         public ActionResult GetMovie(int id)
@@ -46,6 +47,7 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(item);
         }
 
+
         [HttpPost]
         public IActionResult CreateMovie (MovieModel model)
         {
@@ -59,15 +61,15 @@ namespace SMDotNetCore.WebAPI.Controllers
            ,@MovieContent)";
 
             int result = _adoDotNetService.Execute(query,
-                new AdoDotNetParameter("@MovieName", model.MovieName),
-                new AdoDotNetParameter("@MovieTitle", model.MovieTitle),
-                new AdoDotNetParameter("@MovieContent", model.MovieContent)
+                new AdoDotNetParameter("@MovieName", model.MovieName!),
+                new AdoDotNetParameter("@MovieTitle", model.MovieTitle!),
+                new AdoDotNetParameter("@MovieContent", model.MovieContent!)
                 );
 
             string message = result > 0 ? "Saving succeed" : "Saving Failed";
             return Ok(message);
-
         }
+
 
         [HttpPut("{id}")]
         public IActionResult UpdateMovie (int id,MovieModel model)
