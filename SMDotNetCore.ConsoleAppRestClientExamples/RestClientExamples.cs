@@ -11,7 +11,7 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
         public async Task RunAsync()
         {
             await ReadAsync();
-            await EditAsync(1);     
+            await EditAsync(1);
         }
 
         private async Task ReadAsync()
@@ -51,6 +51,22 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
             {
                 string message = response.Content!;
                 Console.WriteLine($"Failed to get data: {message}");
+            }
+        }
+
+        private async Task DeleteAsync(int id)
+        {
+            RestRequest restRequest = new RestRequest($"{_movieEndpoint}/{id}", Method.Delete);
+            var response = await _restClient.ExecuteAsync(restRequest);
+            if (response.IsSuccessStatusCode)
+            {
+                string message = response.Content!;
+                Console.WriteLine($"Data deleted: {message}");
+            }
+            else
+            {
+                string message = response.Content!;
+                Console.WriteLine($"Failed to delete data: {message}");
             }
         }
     }
