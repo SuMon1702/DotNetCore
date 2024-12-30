@@ -57,8 +57,8 @@ namespace SMDotNetCore.shared
             sqlDataAdapter.Fill(dt);
             connection.Close();
 
-           string json = JsonConvert.SerializeObject(dt);
-           List<T> lst = JsonConvert.DeserializeObject<List<T>>(json)!;
+           string json = JsonConvert.SerializeObject(dt);              // C# object to Json
+            List<T> lst = JsonConvert.DeserializeObject<List<T>>(json)!; // Json to C# object
 
             return lst[0];
             
