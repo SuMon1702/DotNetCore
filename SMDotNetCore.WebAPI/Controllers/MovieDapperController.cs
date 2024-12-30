@@ -17,8 +17,8 @@ namespace SMDotNetCore.WebAPI.Controllers
             using IDbConnection db = new SqlConnection(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
             List<MovieModel> lst = db.Query<MovieModel>(query).ToList();
             return Ok(lst);
-
         }
+
 
         [HttpGet("{id}")]
         public IActionResult GetMovie(int id)
@@ -53,8 +53,8 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpPut("{id}")]
 
+        [HttpPut("{id}")]
         public IActionResult PutMovie(int id,MovieModel movie)
         {
             var item= FindById(id);
@@ -77,8 +77,8 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpPatch("{id}")]
 
+        [HttpPatch("{id}")]
         public IActionResult PatchMovie(int id, MovieModel model)
         {
             var item = FindById(id);
@@ -113,8 +113,8 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpDelete("{id}")]
 
+        [HttpDelete("{id}")]
         public IActionResult DeleteMovie(int id)
         {
             var item = FindById(id);
@@ -130,9 +130,8 @@ namespace SMDotNetCore.WebAPI.Controllers
 
             string message = result > 0 ? "Delete Successful" : "Delete Failed";
             return Ok(message);
-
-
         }
+
         private MovieModel? FindById(int id)
         {
             string query = "select * from Tbl_Movie where MovieId = @MovieID";
