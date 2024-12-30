@@ -12,6 +12,8 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
         {
             await ReadAsync();
             await EditAsync(1);
+            await EditAsync(11);
+            await DeleteAsync(2030);
         }
 
         private async Task ReadAsync()
