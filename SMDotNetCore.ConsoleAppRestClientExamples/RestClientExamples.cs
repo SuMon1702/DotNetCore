@@ -1,10 +1,5 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SMDotNetCore.ConsoleAppRestClientExamples
 {
@@ -35,6 +30,11 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
                     Console.WriteLine($"Content=>{item.MovieContent}");
                 }
             }
+        }
+
+        private async Task EditAsync(int id)
+        {
+
         }
 
 
