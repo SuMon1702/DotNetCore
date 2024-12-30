@@ -1,7 +1,4 @@
-﻿
-
-using Microsoft.Data.SqlClient;
-using SMDotNetCore.ConsoleApp;
+﻿using SMDotNetCore.ConsoleApp;
 using SMDotNetCore.ConsoleApp.AdoDotNet;
 
 
