@@ -11,6 +11,7 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
         public async Task RunAsync()
         {
             await ReadAsync();
+            await EditAsync(1);     
         }
 
         private async Task ReadAsync()
@@ -22,7 +23,7 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
             {
                 string jsonStr = response.Content!;
                 List<MovieModel> lst = JsonConvert.DeserializeObject<List<MovieModel>>(jsonStr)!;
-                foreach(var item in lst)
+                foreach (var item in lst)
                 {
                     Console.WriteLine(JsonConvert.SerializeObject(item));
                     Console.WriteLine($"Name=>{item.MovieName}");
@@ -34,9 +35,23 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
 
         private async Task EditAsync(int id)
         {
+            RestRequest restRequest = new RestRequest($"{_movieEndpoint}/{id}", Method.Get);
+            var response = await _restClient.ExecuteAsync(restRequest);
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonStr = response.Content!;
+                var item = JsonConvert.DeserializeObject<MovieModel>(jsonStr)!;
 
+                Console.WriteLine(JsonConvert.SerializeObject(item));
+                Console.WriteLine($"Name=>{item.MovieName}");
+                Console.WriteLine($"Title=>{item.MovieTitle}");
+                Console.WriteLine($"Content=>{item.MovieContent}");
+            }
+            else
+            {
+                string message = response.Content!;
+                Console.WriteLine($"Failed to get data: {message}");
+            }
         }
-
-
     }
 }
