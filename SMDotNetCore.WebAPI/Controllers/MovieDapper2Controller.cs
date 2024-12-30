@@ -8,8 +8,7 @@ namespace SMDotNetCore.WebAPI.Controllers
     [ApiController]
     public class MovieDapper2Controller : ControllerBase
     {
-
-        private readonly DapperService _dapperService= new DapperService(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
+     private readonly DapperService _dapperService= new DapperService(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
 
         [HttpGet]
         public IActionResult GetMovies()
@@ -52,8 +51,8 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpPut("{id}")]
 
+        [HttpPut("{id}")]
         public IActionResult PutMovie(int id,MovieModel movie)
         {
             var item= FindById(id);
@@ -75,8 +74,8 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpPatch("{id}")]
 
+        [HttpPatch("{id}")]
         public IActionResult PatchMovie(int id, MovieModel model)
         {
             var item = FindById(id);
@@ -110,8 +109,8 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
-        [HttpDelete("{id}")]
 
+        [HttpDelete("{id}")]
         public IActionResult DeleteMovie(int id)
         {
             var item = FindById(id);
@@ -126,9 +125,8 @@ namespace SMDotNetCore.WebAPI.Controllers
 
             string message = result > 0 ? "Delete Successful" : "Delete Failed";
             return Ok(message);
-
-
         }
+
         private MovieModel? FindById(int id)
         {
             string query = "select * from Tbl_Movie where MovieId = @MovieID";
