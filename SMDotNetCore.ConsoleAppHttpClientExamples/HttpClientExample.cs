@@ -13,12 +13,11 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
             await ReadAsync();
             //await EditAsync(1);
             //await EditAsync(11);
-
-            //await CreateAsync("John", "Action", "Watch");
-            // await UpdateAsync(1, "BabyJohn", "Action", "Watch");
+           //await CreateAsync("John", "Action", "Watch");
+           // await UpdateAsync(1, "BabyJohn", "Action", "Watch");
           //await DeleteAsync(2030);
         }
-
+        
 
         private async Task ReadAsync()
         {
