@@ -116,18 +116,24 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
                 MovieTitle = title,
                 MovieContent = content
             };
-
-            string blogJson = JsonConvert.SerializeObject(movieModel);
-            HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
-            var response = await _client.PutAsync($"{_blogEndpoint}/{id}", httpContent);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string message = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(message);
+                string blogJson = JsonConvert.SerializeObject(movieModel);
+                HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
+                var response = await _client.PutAsync($"{_blogEndpoint}/{id}", httpContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    string message = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(message);
+                }
+                else
+                {
+                    Console.WriteLine("Failed to update");
+                }
             }
-            else
+            catch (HttpRequestException ex)
             {
-                Console.WriteLine("Failed to update");
+                Console.WriteLine($"Request failed: {ex.Message}");
             }
         }
 
