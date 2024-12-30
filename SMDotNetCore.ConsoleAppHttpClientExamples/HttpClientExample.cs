@@ -59,6 +59,25 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
             }
         }
 
+        private async Task CreateAsync(MovieModel model)
+        {
+            var json = JsonConvert.SerializeObject(model);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _client.PostAsync(_blogEndpoint, data);
+            if (response.IsSuccessStatusCode)
+            {
+                string result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
+            }
+            else
+            {
+                Console.WriteLine("Failed to save data");
+            }
+        }
+
+
+
 
 
 
