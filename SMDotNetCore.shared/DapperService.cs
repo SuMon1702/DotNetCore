@@ -4,7 +4,6 @@ using System.Data;
 
 namespace SMDotNetCore.shared
 {
-
         public class DapperService
         {
             private readonly string _connectionString;
