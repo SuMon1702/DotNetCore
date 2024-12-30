@@ -91,6 +91,7 @@ namespace SMDotNetCore.WebAPI.Controllers
             return Ok(message);
         }
 
+
         [HttpPatch("{id}")]
         public IActionResult UpdateMovies(int id, MovieModel model)
         {
@@ -121,7 +122,6 @@ namespace SMDotNetCore.WebAPI.Controllers
             conditions = conditions.Substring(0, conditions.Length - 1);
             model.MovieID = id;
 
-
             string query = $@"UPDATE [dbo].[Tbl_Movie]
    SET {conditions}
  WHERE MovieID= @MovieID;";
@@ -131,6 +131,8 @@ namespace SMDotNetCore.WebAPI.Controllers
             string message = result > 0 ? "Updating Successful." : "Updating Failed.";
             return Ok(message);
         }
+
+
 
         [HttpDelete("{id}")]
         public IActionResult DeleteMovie(int id)
