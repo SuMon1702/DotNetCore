@@ -80,12 +80,12 @@ namespace SMDotNetCore.WebAPI.Controllers
       ,[MovieTitle] = @MovieTitle
       ,[MovieContent] = @MovieContent
  WHERE MovieID= @MovieID;";
-            
-            int result= _adoDotNetService.Execute(query,
+
+            int result = _adoDotNetService.Execute(query,
                 new AdoDotNetParameter("@MovieID", id),
-                new AdoDotNetParameter("@MovieName", model.MovieName),
-                new AdoDotNetParameter("@MovieTitle", model.MovieTitle),
-                new AdoDotNetParameter("@MovieContent", model.MovieContent)
+                new AdoDotNetParameter("@MovieName", model.MovieName!),
+                new AdoDotNetParameter("@MovieTitle", model.MovieTitle!),
+                new AdoDotNetParameter("@MovieContent", model.MovieContent!)
                 );
             string message = result > 0 ? "Updating Successful." : "Updating Failed.";
             return Ok(message);
