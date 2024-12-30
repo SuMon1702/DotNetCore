@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SMDotNetCore.RestApiWithNLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMDotNetCore.ConsoleAppHttpClient", "SMDotNetCore.ConsoleAppHttpClient\SMDotNetCore.ConsoleAppHttpClient.csproj", "{BAFDBB78-5808-4B63-A128-DC35F5A42D14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMDotNetCore.ConsoleAppHttpClientExamples", "SMDotNetCore.ConsoleAppHttpClientExamples\SMDotNetCore.ConsoleAppHttpClientExamples.csproj", "{94FD3BB4-B6CE-4F99-8293-F8F09737D1F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{BAFDBB78-5808-4B63-A128-DC35F5A42D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAFDBB78-5808-4B63-A128-DC35F5A42D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAFDBB78-5808-4B63-A128-DC35F5A42D14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94FD3BB4-B6CE-4F99-8293-F8F09737D1F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94FD3BB4-B6CE-4F99-8293-F8F09737D1F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94FD3BB4-B6CE-4F99-8293-F8F09737D1F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94FD3BB4-B6CE-4F99-8293-F8F09737D1F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

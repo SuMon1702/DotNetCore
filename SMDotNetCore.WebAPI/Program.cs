@@ -3,6 +3,7 @@ using SMDotNetCore.shared;
 using SMDotNetCore.WebAPI;
 
 var builder = WebApplication.CreateBuilder(args);
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // Add services to the container.
 
@@ -16,7 +17,17 @@ string connectionString = builder.Configuration.GetConnectionString("DbConnectio
 builder.Services.AddScoped(n => new AdoDotNetService(connectionString));
 builder.Services.AddScoped(n => new DapperService(connectionString));
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("https://localhost:7294",
+                                              "http://localhost:5090")
+                                .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+                                .AllowAnyHeader();
+                      });
+});
 
 
 var app = builder.Build();
