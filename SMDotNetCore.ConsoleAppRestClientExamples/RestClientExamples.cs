@@ -15,7 +15,7 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
 
         public async Task RunAsync()
         {
-            
+            await ReadAsync();
         }
 
         private async Task ReadAsync()
