@@ -1,6 +1,4 @@
-﻿
-using Newtonsoft.Json;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 
 Console.WriteLine("Hello, World!");
@@ -10,7 +8,7 @@ var model= JsonConvert.DeserializeObject<MainDto>(jsonStr);
 
 
 //Question Number ty ko swl htoke trr
-foreach (var item in model.questions)
+foreach (var item in model!.questions)
 {
     Console.WriteLine(item.questionNo);
 }
