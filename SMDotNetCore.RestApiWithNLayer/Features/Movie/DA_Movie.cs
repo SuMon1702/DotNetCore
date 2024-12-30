@@ -22,7 +22,7 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.Blog
         public MovieModel GetMovie(int id)
         {
             var item = _appDbContext.Movies.FirstOrDefault(x => x.MovieID == id);
-            return item;
+            return item!;
         }
 
         public int CreateMovie(MovieModel requestModel)
