@@ -1,5 +1,4 @@
-﻿
-using SMDotNetCore.ConsoleAppRestClientExamples;
+﻿using SMDotNetCore.ConsoleAppRestClientExamples;
 
 Console.WriteLine("Hello, World!");
 
