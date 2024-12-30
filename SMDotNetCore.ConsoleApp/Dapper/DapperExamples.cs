@@ -10,13 +10,13 @@ namespace SMDotNetCore.ConsoleApp.Dapper
     {
         public void Run()
         {
-            //Read();
+              Read();
             //Edit(1);
             //Edit(20);
 
             //Create("Dangal", "Action", "WatchNow");
             //Update(15, "SetIt", "Romance", "WatchIt");
-            Delete(6);
+            //Delete(6);
         }
 
         public void Read()
@@ -50,8 +50,6 @@ namespace SMDotNetCore.ConsoleApp.Dapper
             Console.WriteLine(item.MovieTitle);
             Console.WriteLine(item.MovieContent);
             Console.WriteLine("...........................");
-
-
         }
 
         public void Create(string name, string title, string content)
