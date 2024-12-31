@@ -80,6 +80,29 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
             }
         }
 
+        private async Task UpdateAsync(int id, string name, string title, string author)
+        {
+            MovieModel movieModel = new MovieModel
+            {
+                MovieName = name,
+                MovieTitle = title,
+                MovieContent = author
+            };
+            var restRequest = new RestRequest($"{_movieEndpoint}/{id}", Method.Put);
+            restRequest.AddJsonBody(movieModel);
+            var response = await _restClient.ExecuteAsync(restRequest);
+            if (response.IsSuccessStatusCode)
+            {
+                string message = response.Content!;
+                Console.WriteLine($"Data updated: {message}");
+            }
+            else
+            {
+                string message = response.Content!;
+                Console.WriteLine($"Failed to update data: {message}");
+            }
+        }
+
             private async Task DeleteAsync(int id)
         {
             RestRequest restRequest = new RestRequest($"{_movieEndpoint}/{id}", Method.Delete);
