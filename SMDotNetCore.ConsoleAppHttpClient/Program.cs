@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 
-
 Console.WriteLine("Hello, World!");
 
 string jsonStr = await File.ReadAllTextAsync("data.json");
@@ -26,9 +25,6 @@ static string MyanToEng(string num)
 
     return num;
 }
-
-
-
 
 public class MainDto
 {
