@@ -11,7 +11,7 @@ namespace SMDotNetCore.ConsoleAppHttpClientExamples
         public async Task RunAsync()
         {
             await ReadAsync();
-            //await EditAsync(1);
+            await EditAsync(1);
             //await EditAsync(11);
            //await CreateAsync("John", "Action", "Watch");
            // await UpdateAsync(1, "BabyJohn", "Action", "Watch");
