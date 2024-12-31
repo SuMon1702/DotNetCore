@@ -102,18 +102,25 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
                 MovieTitle = title,
                 MovieContent = author
             };
-            var restRequest = new RestRequest($"{_movieEndpoint}/{id}", Method.Put);
-            restRequest.AddJsonBody(movieModel);
-            var response = await _restClient.ExecuteAsync(restRequest);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string message = response.Content!;
-                Console.WriteLine($"Data updated: {message}");
+                var restRequest = new RestRequest($"{_movieEndpoint}/{id}", Method.Put);
+                restRequest.AddJsonBody(movieModel);
+                var response = await _restClient.ExecuteAsync(restRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    string message = response.Content!;
+                    Console.WriteLine($"Data updated: {message}");
+                }
+                else
+                {
+                    string message = response.Content!;
+                    Console.WriteLine($"Failed to update data: {message}");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                string message = response.Content!;
-                Console.WriteLine($"Failed to update data: {message}");
+                Console.WriteLine($"Request failed: {ex.Message}");
             }
         }
 
