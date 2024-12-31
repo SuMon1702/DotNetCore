@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
+using System.Globalization;
 
 namespace SMDotNetCore.ConsoleAppRestClientExamples
 {
@@ -56,7 +57,30 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
             }
         }
 
-        private async Task DeleteAsync(int id)
+        private async Task CreateAsync(string name, string title, string author)
+        {
+            MovieModel movieModel = new MovieModel
+            {
+                MovieName = name,
+                MovieTitle = title,
+                MovieContent = author
+            };
+            var restRequest = new RestRequest(_movieEndpoint, Method.Post);
+            restRequest.AddJsonBody(movieModel);
+            var response = await _restClient.ExecuteAsync(restRequest);
+            if (response.IsSuccessStatusCode)
+            {
+                string message = response.Content!;
+                Console.WriteLine($"Data created: {message}");
+            }
+            else
+            {
+                string message = response.Content!;
+                Console.WriteLine($"Failed to create data: {message}");
+            }
+        }
+
+            private async Task DeleteAsync(int id)
         {
             RestRequest restRequest = new RestRequest($"{_movieEndpoint}/{id}", Method.Delete);
             var response = await _restClient.ExecuteAsync(restRequest);
