@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
-using System.Globalization;
 
 namespace SMDotNetCore.ConsoleAppRestClientExamples
 {
