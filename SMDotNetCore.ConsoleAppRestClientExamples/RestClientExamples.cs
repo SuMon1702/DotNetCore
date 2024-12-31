@@ -45,22 +45,29 @@ namespace SMDotNetCore.ConsoleAppRestClientExamples
 
         private async Task EditAsync(int id)
         {
-            RestRequest restRequest = new RestRequest($"{_movieEndpoint}/{id}", Method.Get);
-            var response = await _restClient.ExecuteAsync(restRequest);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string jsonStr = response.Content!;
-                var item = JsonConvert.DeserializeObject<MovieModel>(jsonStr)!;
+                RestRequest restRequest = new RestRequest($"{_movieEndpoint}/{id}", Method.Get);
+                var response = await _restClient.ExecuteAsync(restRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonStr = response.Content!;
+                    var item = JsonConvert.DeserializeObject<MovieModel>(jsonStr)!;
 
-                Console.WriteLine(JsonConvert.SerializeObject(item));
-                Console.WriteLine($"Name=>{item.MovieName}");
-                Console.WriteLine($"Title=>{item.MovieTitle}");
-                Console.WriteLine($"Content=>{item.MovieContent}");
+                    Console.WriteLine(JsonConvert.SerializeObject(item));
+                    Console.WriteLine($"Name=>{item.MovieName}");
+                    Console.WriteLine($"Title=>{item.MovieTitle}");
+                    Console.WriteLine($"Content=>{item.MovieContent}");
+                }
+                else
+                {
+                    string message = response.Content!;
+                    Console.WriteLine($"Failed to get data: {message}");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                string message = response.Content!;
-                Console.WriteLine($"Failed to get data: {message}");
+                Console.WriteLine($"Request failed: {ex.Message}");
             }
         }
 
