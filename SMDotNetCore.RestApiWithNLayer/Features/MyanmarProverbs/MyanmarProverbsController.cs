@@ -29,6 +29,26 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
             var model = await GetDataFromApi();
             return Ok(model.Tbl_MMProverbsTitle);
         }
+
+        [HttpGet("{titleName}")]
+        public async Task<IActionResult> Get(string titleName)
+        {
+            var model = await GetDataFromApi();
+            var item = model.Tbl_MMProverbsTitle.FirstOrDefault(x => x.TitleName == titleName);
+            if (item is null) return NotFound();
+
+            var titleId = item.TitleId;
+            var result = model.Tbl_MMProverbs.Where(x => x.TitleId == titleId);
+
+            List<Tbl_MmproverbsHead> lst = result.Select(x => new Tbl_MmproverbsHead
+            {
+                ProverbId = x.ProverbId,
+                ProverbName = x.ProverbName,
+                TitleId = x.TitleId
+            }).ToList();
+
+            return Ok(lst);
+        }
     }
 }
 
