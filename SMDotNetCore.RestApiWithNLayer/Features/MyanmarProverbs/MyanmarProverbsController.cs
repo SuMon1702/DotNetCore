@@ -32,7 +32,7 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
         #endregion
 
 
-
+        #region Get by titleName
         [HttpGet("{titleName}")]
         public async Task<IActionResult> Get(string titleName)
         {
@@ -52,6 +52,7 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
 
             return Ok(lst);
         }
+        #endregion
 
         [HttpGet("{titleId}/{proverbId}")]
         public async Task<IActionResult> Get(int titleId, int proverbId)
