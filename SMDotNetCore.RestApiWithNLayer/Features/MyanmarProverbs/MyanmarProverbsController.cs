@@ -54,6 +54,7 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
         }
         #endregion
 
+        #region Get by titleId and proverbId
         [HttpGet("{titleId}/{proverbId}")]
         public async Task<IActionResult> Get(int titleId, int proverbId)
         {
@@ -62,6 +63,7 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
 
             return Ok(item);
         }
+        #endregion
     }
 }
 
