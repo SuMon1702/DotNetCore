@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
 {
@@ -7,7 +8,20 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
     [ApiController]
     public class MyanmarProverbsController : ControllerBase
     {
+        private async Task<Tbl_Mmproverbs> GetDataFromApi()
+        {
+            //HttpClient client = new HttpClient();
+            //var response = await client.GetAsync("https://raw.githubusercontent.com/sannlynnhtun-coding/Myanmar-Proverbs/main/MyanmarProverbs.json");
+            //if (!response.IsSuccessStatusCode) return null;
 
+            //string jsonStr = await response.Content.ReadAsStringAsync();
+            //var model = JsonConvert.DeserializeObject<Tbl_Mmproverbs>(jsonStr);
+            //return model!;
+
+            var jsonStr = await System.IO.File.ReadAllTextAsync("data2.json");
+            var model = JsonConvert.DeserializeObject<Tbl_Mmproverbs>(jsonStr);
+            return model!;
+        }
 
     }
 }
