@@ -12,7 +12,7 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
     }
 }
 
-public class Rootobject
+public class Tbl_Mmproverbs
 {
     public Tbl_Mmproverbstitle[] Tbl_MMProverbsTitle { get; set; }
     public Tbl_MmproverbsDetail[] Tbl_MMProverbs { get; set; }
