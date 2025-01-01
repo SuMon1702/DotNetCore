@@ -31,3 +31,9 @@ public class Tbl_MmproverbsDetail
     public string ProverbName { get; set; }
     public string ProverbDesp { get; set; }
 }
+public class Tbl_MmproverbsHead
+{
+    public int TitleId { get; set; }
+    public int ProverbId { get; set; }
+    public string ProverbName { get; set; }
+}
