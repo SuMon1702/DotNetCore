@@ -11,7 +11,7 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
         private async Task<Tbl_Mmproverbs> GetDataFromApi()
         {
             //HttpClient client = new HttpClient();
-            //var response = await client.GetAsync("https://raw.githubusercontent.com/sannlynnhtun-coding/Myanmar-Proverbs/main/MyanmarProverbs.json");
+            //var response = await client.GetAsync();
             //if (!response.IsSuccessStatusCode) return null;
 
             //string jsonStr = await response.Content.ReadAsStringAsync();
