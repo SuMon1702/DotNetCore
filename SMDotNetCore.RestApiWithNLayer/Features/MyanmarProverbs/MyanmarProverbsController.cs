@@ -22,12 +22,16 @@ namespace SMDotNetCore.RestApiWithNLayer.Features.MyanmarProverbs
             return model!;
         }
 
+        #region Get
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             var model = await GetDataFromApi();
             return Ok(model.Tbl_MMProverbsTitle);
         }
+        #endregion
+
+
 
         [HttpGet("{titleName}")]
         public async Task<IActionResult> Get(string titleName)
