@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
 {
@@ -7,6 +8,14 @@ namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
     [ApiController]
     public class MyanmarProverbsController : ControllerBase
     {
+
+        private async Task<Tbl_Mmproverbs> GetDataFromApi()
+        {
+            var jsonStr = await System.IO.File.ReadAllTextAsync("data2.json");
+            var model= JsonConvert.DeserializeObject<Tbl_Mmproverbs>(jsonStr);
+            return model!;
+
+        }
 
 
 
