@@ -24,6 +24,7 @@ namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
             return Ok(model.Tbl_MMProverbsTitle);
         }
 
+
         [HttpGet("{titleName}")]
         public async Task<IActionResult> Get(string titleName)
         {
@@ -42,8 +43,8 @@ namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
             }).ToList();                   // drr yay lite tot drr ka description ma pr bl tachr 3 khu htoke tr fyit twr dl
 
             return Ok(lst);
-
         }
+
 
         [HttpGet("{titleId}/{proverbId}")]
         public async Task<IActionResult> Get(int titleId, int proverbId)
@@ -53,19 +54,11 @@ namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
 
             return Ok(item);
 
-            // drr ka titleid ka က,ခ ty yk id ka 1,2 so to 1,2 yay. proverbid ka ae က,ခ yk bl taku proverb ko ti chin tr ll aedr ko ll 1,2 nk yay
+            // drr ka titleId ka က,ခ ty yk id ka 1,2 so to 1,2 yay. proverbId ka ae က,ခ yk bl takhu proverb ko ti chin tr ll aedr ko ll 1,2 nk yay
             // က htl ka bl proverb so pee htwt mr
         }
 
     }
-
-
-
-
-
-
-
-
 
         public class Tbl_Mmproverbs
         {
