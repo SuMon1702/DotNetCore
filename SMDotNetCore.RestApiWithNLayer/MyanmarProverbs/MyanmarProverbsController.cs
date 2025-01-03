@@ -13,7 +13,7 @@ namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
         private async Task<Tbl_Mmproverbs> GetDataFromApi()
         {
             var jsonStr = await System.IO.File.ReadAllTextAsync("data2.json");
-            var model= JsonConvert.DeserializeObject<Tbl_Mmproverbs>(jsonStr);
+            var model = JsonConvert.DeserializeObject<Tbl_Mmproverbs>(jsonStr);
             return model!;
 
         }
@@ -45,9 +45,21 @@ namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
 
             return Ok(lst);
 
-            
         }
 
+        [HttpGet("{titleId}/{proverbId}")]
+        public async Task<IActionResult> Get(int titleId, int proverbId)
+        {
+            var model = await GetDataFromApi();
+            var item = model.Tbl_MMProverbs.FirstOrDefault(x => x.TitleId == titleId && x.ProverbId == proverbId);
+
+            return Ok(item);
+
+            // drr ka titleid ka က,ခ ty yk id ka 1,2 so to 1,2 yay. proverbid ka ae က,ခ yk bl taku proverb ko ti chin tr ll aedr ko ll 1,2 nk yay
+            // က htl ka bl proverb so pee htwt mr
+        }
+
+    }
 
 
 
@@ -84,5 +96,5 @@ namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
             public string ProverbName { get; set; }
         }
 
-    }
+    
 }
