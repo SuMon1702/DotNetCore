@@ -36,9 +36,16 @@ namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
             var titleId = item.TitleId;
             var result = model.Tbl_MMProverbs.Where(x => x.TitleId == titleId);//di hti ka ko ka က yk hrr ya chin yin က ko titlename mr yite yin thu nk sine tk hrr pw lr mr
 
-            return Ok(result);
+            List<Tbl_MmproverbsHead> lst = result.Select(x => new Tbl_MmproverbsHead
+            {
+                ProverbId = x.ProverbId,
+                ProverbName = x.ProverbName,
+                TitleId = x.TitleId
+            }).ToList();                   // drr yay lite tot drr ka description ma pr bl tachr 3 khu htoke tr fyit twr dl
 
+            return Ok(lst);
 
+            
         }
 
 
