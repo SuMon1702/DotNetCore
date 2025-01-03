@@ -17,7 +17,13 @@ namespace SMDotNetCore.RestApiWithNLayer.MyanmarProverbs
 
         }
 
-
+        //drr ka all swl htoke tr
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var model = await GetDataFromApi();
+            return Ok(model.Tbl_MMProverbsTitle);
+        }
 
 
 
