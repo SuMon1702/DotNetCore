@@ -1,0 +1,6 @@
+@SMDotNetCore.PizzaAPI_HostAddress = http://localhost:5163
+
+GET {{SMDotNetCore.PizzaAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
