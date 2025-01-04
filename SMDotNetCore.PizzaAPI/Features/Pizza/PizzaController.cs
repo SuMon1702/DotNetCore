@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SMDotNetCore.PizzaAPI.DB;
 
 namespace SMDotNetCore.PizzaAPI.Features.Pizza
 {
@@ -7,5 +9,19 @@ namespace SMDotNetCore.PizzaAPI.Features.Pizza
     [ApiController]
     public class PizzaController : ControllerBase
     {
+        private readonly AppDbContext _context;
+
+        public PizzaController()
+        {
+            _context = new AppDbContext();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var lst = await _context.Pizzas.ToListAsync();
+            return Ok(lst);
+        }
+
     }
 }
