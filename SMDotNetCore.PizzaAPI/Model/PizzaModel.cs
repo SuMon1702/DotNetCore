@@ -3,18 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SMDotNetCore.PizzaAPI.Model
 {
-    [Table("Tbl_Pizza")]
+    [Table("Tbl-Pizza")]
     public class PizzaModel
     {
         [Key]
         [Column("PizzaId")]
         public int id { get; set; }
 
-        [Column("PizzaName")]
+        [Column("Pizza")]
         public string name { get; set; }
 
-        [Column("PizzaPrice")]
-        public double price { get; set; }
+        [Column("Price")]
+        public decimal price { get; set; }
 
 
     }
