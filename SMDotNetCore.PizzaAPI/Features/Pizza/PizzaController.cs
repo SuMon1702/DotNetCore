@@ -46,7 +46,7 @@ namespace SMDotNetCore.PizzaAPI.Features.Pizza
         [HttpPost("Order")]
         public async Task<IActionResult> OrderAsync(OrderRequest orderRequest)
         {
-            var itemPizza = await _context.Pizzas.FirstOrDefaultAsync(x => x.id == orderRequest.PizzaId);
+            var itemPizza = await _context.Pizzas.FirstOrDefaultAsync(x => x.Id == orderRequest.PizzaId);
             var total = itemPizza!.price!;
 
             if (orderRequest.Extras.Length >0)
