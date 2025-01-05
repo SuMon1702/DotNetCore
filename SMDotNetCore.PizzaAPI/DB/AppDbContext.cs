@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SMDotNetCore.PizzaAPI.Model;
-using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace SMDotNetCore.PizzaAPI.DB;
 
