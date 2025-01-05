@@ -10,7 +10,7 @@ namespace SMDotNetCore.PizzaAPI.Model
         [Column("PizzaExtraId")]
         public int id { get; set; }
         [Column("PizzaExtraName")]
-        public string name { get; set; }
+        public required string Name { get; set; }
 
         public decimal Price { get; set; }
 
