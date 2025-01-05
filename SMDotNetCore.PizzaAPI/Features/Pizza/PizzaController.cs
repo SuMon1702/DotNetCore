@@ -31,6 +31,18 @@ namespace SMDotNetCore.PizzaAPI.Features.Pizza
             return Ok(lst);
         }
 
+        [HttpGet("Order/{invoiceNo}")]
+        public async Task<IActionResult> GetOrder(string invoiceNo)
+        {
+            var item = await _context.PizzaOrders.FirstOrDefaultAsync(x => x.PizzaOrderInvoiceNo == invoiceNo);
+            var lst = await _context.PizzaOrderDetails.Where(x => x.PizzaOrderInvoiceNo == invoiceNo).ToListAsync();
+
+            return Ok(new
+            {
+                Order = item,
+                OrderDetail = lst
+            });
+        }
 
         [HttpPost("Order")]
         public async Task<IActionResult> OrderAsync(OrderRequest orderRequest)
@@ -73,6 +85,8 @@ namespace SMDotNetCore.PizzaAPI.Features.Pizza
             };
 
             return Ok(response);
+
+
         }
     }
 }
