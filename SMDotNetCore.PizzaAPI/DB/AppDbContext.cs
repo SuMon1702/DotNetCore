@@ -13,5 +13,7 @@ internal class AppDbContext : DbContext
 
     public DbSet<PizzaModel> Pizzas { get; set; }
 
+    public DbSet<PizzaExtraModel> PizzaExtras { get; set; }
+
 
 }
