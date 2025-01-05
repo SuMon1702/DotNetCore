@@ -8,7 +8,7 @@ namespace SMDotNetCore.PizzaAPI.Model
     {
         [Key]
         [Column("PizzaId")]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [Column("Pizza")]
         public string name { get; set; }
