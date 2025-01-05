@@ -23,5 +23,12 @@ namespace SMDotNetCore.PizzaAPI.Features.Pizza
             return Ok(lst);
         }
 
+        [HttpGet("extras")]
+        public async Task<IActionResult> GetExtrasAsync()
+        {
+            var lst = await _context.PizzaExtras.ToListAsync();
+            return Ok(lst);
+        }
+
     }
 }
