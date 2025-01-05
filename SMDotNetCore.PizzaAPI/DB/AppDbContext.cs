@@ -17,3 +17,9 @@ internal class AppDbContext : DbContext
 
 
 }
+
+public class OrderRequest
+{
+    public int PizzaId { get; set; }
+    public int[] Extras { get; set; }
+}
