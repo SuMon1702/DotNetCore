@@ -33,3 +33,9 @@ public class OrderResponse
     public string InvoiceNo { get; set; }
     public decimal TotalAmount { get; set; }
 }
+
+public class  PizzaOrderInvoiceResponse
+{
+    public PizzaOrderInvoiceHeadModel Order { get; set; }
+    public List<PizzaOrderInvoiceDetailModel> OrderDetail { get; set; }
+}
