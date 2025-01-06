@@ -2,20 +2,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SMDotNetCore.ConsoleAppRefitExamples
 {
-    internal class RefitExample
+    public class RefitExample
     {
         private readonly IMovieAPI _service = RestService.For<IMovieAPI>("https://localhost:7010");
 
         public async Task RunAsync()
         {
             //await ReadAsync();
-            await EditAsync(12);
-            await EditAsync(100);
+            // await EditAsync(12);
+            // await EditAsync(100);
+            await CreateAsync("Jonny", "Jonny Title", "Jonny Content");
         }
 
 
@@ -60,6 +62,19 @@ namespace SMDotNetCore.ConsoleAppRefitExamples
             }
         }
 
-        
+        private async Task CreateAsync(string name, string title, string content)
+        {
+            var movie = new MovieModel
+            {
+                MovieName = name,
+                MovieTitle = title,
+                MovieContent = content,
+            };
+
+            var result = await _service.CreateMovie(movie);
+            Console.WriteLine(result);
+        }
+
+
     }
 }
