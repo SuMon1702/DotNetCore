@@ -22,4 +22,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SMDotNetCore.shared\SMDotNetCore.shared.csproj" />
+  </ItemGroup>
+
 </Project>
