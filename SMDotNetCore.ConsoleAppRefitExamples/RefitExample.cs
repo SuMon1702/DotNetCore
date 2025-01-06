@@ -14,12 +14,14 @@ namespace SMDotNetCore.ConsoleAppRefitExamples
 
         public async Task RunAsync()
         {
-            //await ReadAsync();
+            await ReadAsync();
             // await EditAsync(12);
             // await EditAsync(100);
             //  await CreateAsync("Jonny", "Jonny Title", "Jonny Content");
             //  await UpdateAsync(12, "Puspa_2", "Jonny Title", "Jonny Content");
-            await EditAsync(12);
+            // await EditAsync(12);
+           // await DeleteAsync(12);
+            
         }
 
 
@@ -90,6 +92,10 @@ namespace SMDotNetCore.ConsoleAppRefitExamples
             Console.WriteLine(result);
         }
 
-
+        private async Task DeleteAsync(int id)
+        {
+            var result = await _service.DeleteMovie(id);
+            Console.WriteLine(result);
+        }
     }
 }
