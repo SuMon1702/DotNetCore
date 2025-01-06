@@ -13,7 +13,9 @@ namespace SMDotNetCore.ConsoleAppRefitExamples
 
         public async Task RunAsync()
         {
-            await ReadAsync();
+            //await ReadAsync();
+            await EditAsync(12);
+            await EditAsync(100);
         }
 
 
@@ -30,5 +32,34 @@ namespace SMDotNetCore.ConsoleAppRefitExamples
             }
 
         }
+
+        private async Task EditAsync(int id)
+        {
+            // Refit.ApiException: 'Response status code does not indicate success: 404 (Not Found).'
+            try
+            {
+                var item = await _service.GetMovie(id);
+                Console.WriteLine($"MovieID: {item.MovieID}");
+                Console.WriteLine($"MovieName: {item.MovieName}");
+                Console.WriteLine($"MovieTitle: {item.MovieTitle}");
+                Console.WriteLine($"MovieContent: {item.MovieContent}");
+                Console.WriteLine(".......................");
+            }
+
+            //dii catch ka movie Controller htl ka no data found msg ko pya mr
+            catch (ApiException ex)
+            {
+                Console.WriteLine(ex.StatusCode.ToString());
+                Console.WriteLine(ex.Content);
+            }
+
+            // thu ka Response status code does not indicate success: 404 (Not Found) pya dl
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        
     }
 }
