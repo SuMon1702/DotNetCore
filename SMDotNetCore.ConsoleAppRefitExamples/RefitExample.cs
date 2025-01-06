@@ -17,7 +17,9 @@ namespace SMDotNetCore.ConsoleAppRefitExamples
             //await ReadAsync();
             // await EditAsync(12);
             // await EditAsync(100);
-            await CreateAsync("Jonny", "Jonny Title", "Jonny Content");
+            //  await CreateAsync("Jonny", "Jonny Title", "Jonny Content");
+            //  await UpdateAsync(12, "Puspa_2", "Jonny Title", "Jonny Content");
+            await EditAsync(12);
         }
 
 
@@ -72,6 +74,19 @@ namespace SMDotNetCore.ConsoleAppRefitExamples
             };
 
             var result = await _service.CreateMovie(movie);
+            Console.WriteLine(result);
+        }
+
+        private async Task UpdateAsync(int id, string name, string title, string content)
+        {
+            var movie = new MovieModel
+            {
+                MovieName = name,
+                MovieTitle = title,
+                MovieContent = content,
+            };
+
+            var result = await _service.UpdateMovie(id, movie);
             Console.WriteLine(result);
         }
 
