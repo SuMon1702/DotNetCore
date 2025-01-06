@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SMDotNetCore.PizzaAPI.DB;
 using SMDotNetCore.PizzaAPI.Model;
+using SMDotNetCore.shared;
 
 namespace SMDotNetCore.PizzaAPI.Features.Pizza
 {
@@ -10,10 +11,11 @@ namespace SMDotNetCore.PizzaAPI.Features.Pizza
     public class PizzaController : ControllerBase
     {
         private readonly AppDbContext _context;
-
+        private readonly DapperService _dapperService;
         public PizzaController()
         {
             _context = new AppDbContext();
+            _dapperService = new DapperService(ConnectionString.SqlConnectionStringBuilder.ConnectionString);
         }
 
         [HttpGet]
