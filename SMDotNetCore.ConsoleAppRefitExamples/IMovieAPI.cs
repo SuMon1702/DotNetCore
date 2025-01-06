@@ -27,9 +27,6 @@ public interface IMovieAPI
 
 }
 
-
-
-
 public class MovieModel
 {
     
