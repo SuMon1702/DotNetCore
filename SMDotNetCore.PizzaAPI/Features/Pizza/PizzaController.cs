@@ -33,18 +33,18 @@ namespace SMDotNetCore.PizzaAPI.Features.Pizza
             return Ok(lst);
         }
 
-        //[HttpGet("Order/{invoiceNo}")]
-        //public async Task<IActionResult> GetOrder(string invoiceNo)
-        //{
-        //    var item = await _context.PizzaOrders.FirstOrDefaultAsync(x => x.PizzaOrderInvoiceNo == invoiceNo);
-        //    var lst = await _context.PizzaOrderDetails.Where(x => x.PizzaOrderInvoiceNo == invoiceNo).ToListAsync();
+        [HttpGet("Orders/{invoiceNo}")]
+        public async Task<IActionResult> GetOrders(string invoiceNo)
+        {
+            var item = await _context.PizzaOrders.FirstOrDefaultAsync(x => x.PizzaOrderInvoiceNo == invoiceNo);
+            var lst = await _context.PizzaOrderDetails.Where(x => x.PizzaOrderInvoiceNo == invoiceNo).ToListAsync();
 
-        //    return Ok(new
-        //    {
-        //        Order = item,
-        //        OrderDetail = lst
-        //    });
-        //}
+            return Ok(new
+            {
+                Order = item,
+                OrderDetail = lst
+            });
+        }
 
 
         [HttpGet ("Order/{invoiceNo}")]
