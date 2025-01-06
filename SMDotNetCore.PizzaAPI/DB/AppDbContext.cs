@@ -34,27 +34,6 @@ public class OrderResponse
     public decimal TotalAmount { get; set; }
 }
 
-public class PizzaOrderInvoiceDetailModel
-{
-    public int PizzaOrderDetailId { get; set; }
-    public string PizzaOrderInvoiceNo { get; set; }
-    public int PizzaExtraId { get; set; }
-    public string PizzaExtraName { get; set; }
-    public decimal Price { get; set; }
-
-}
-
-public class PizzaOrderInvoiceHeadModel
-{
-    public string PizzaOrderId { get; set; }
-    public string PizzaOrderInvoiceNo { get; set; }
-    public decimal TotalAmount { get; set; }
-    public string PizzaId { get; set; }
-    public string Pizza { get; set; }
-    public decimal Price { get; set; }
-
-}
-
 public class  PizzaOrderInvoiceResponse
 {
     public PizzaOrderInvoiceHeadModel Order { get; set; }
