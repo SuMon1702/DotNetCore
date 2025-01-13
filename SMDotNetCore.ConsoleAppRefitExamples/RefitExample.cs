@@ -1,101 +1,94 @@
 ﻿using Refit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SMDotNetCore.ConsoleAppRefitExamples
+namespace SMDotNetCore.ConsoleAppRefitExamples;
+
+public class RefitExample
 {
-    public class RefitExample
+    private readonly IMovieAPI _service = RestService.For<IMovieAPI>("https://localhost:7010");
+
+    public async Task RunAsync()
     {
-        private readonly IMovieAPI _service = RestService.For<IMovieAPI>("https://localhost:7010");
+        await ReadAsync();
+        // await EditAsync(12);
+        // await EditAsync(100);
+        //  await CreateAsync("Jonny", "Jonny Title", "Jonny Content");
+        //  await UpdateAsync(12, "Puspa_2", "Jonny Title", "Jonny Content");
+        // await EditAsync(12);
+       // await DeleteAsync(12);
+        
+    }
 
-        public async Task RunAsync()
+
+    private async Task ReadAsync()
+    {
+        var lst = await _service.GetMovies();
+        foreach (var item in lst)
         {
-            await ReadAsync();
-            // await EditAsync(12);
-            // await EditAsync(100);
-            //  await CreateAsync("Jonny", "Jonny Title", "Jonny Content");
-            //  await UpdateAsync(12, "Puspa_2", "Jonny Title", "Jonny Content");
-            // await EditAsync(12);
-           // await DeleteAsync(12);
-            
+            Console.WriteLine($"MovieID: {item.MovieID}");
+            Console.WriteLine($"MovieName: {item.MovieName}");
+            Console.WriteLine($"MovieTitle: {item.MovieTitle}");
+            Console.WriteLine($"MovieContent: {item.MovieContent}");
+            Console.WriteLine(".......................");
         }
 
+    }
 
-        private async Task ReadAsync()
+    private async Task EditAsync(int id)
+    {
+        // Refit.ApiException: 'Response status code does not indicate success: 404 (Not Found).'
+        try
         {
-            var lst = await _service.GetMovies();
-            foreach (var item in lst)
-            {
-                Console.WriteLine($"MovieID: {item.MovieID}");
-                Console.WriteLine($"MovieName: {item.MovieName}");
-                Console.WriteLine($"MovieTitle: {item.MovieTitle}");
-                Console.WriteLine($"MovieContent: {item.MovieContent}");
-                Console.WriteLine(".......................");
-            }
-
+            var item = await _service.GetMovie(id);
+            Console.WriteLine($"MovieID: {item.MovieID}");
+            Console.WriteLine($"MovieName: {item.MovieName}");
+            Console.WriteLine($"MovieTitle: {item.MovieTitle}");
+            Console.WriteLine($"MovieContent: {item.MovieContent}");
+            Console.WriteLine(".......................");
         }
 
-        private async Task EditAsync(int id)
+        //dii catch ka movie Controller htl ka no data found msg ko pya mr
+        catch (ApiException ex)
         {
-            // Refit.ApiException: 'Response status code does not indicate success: 404 (Not Found).'
-            try
-            {
-                var item = await _service.GetMovie(id);
-                Console.WriteLine($"MovieID: {item.MovieID}");
-                Console.WriteLine($"MovieName: {item.MovieName}");
-                Console.WriteLine($"MovieTitle: {item.MovieTitle}");
-                Console.WriteLine($"MovieContent: {item.MovieContent}");
-                Console.WriteLine(".......................");
-            }
-
-            //dii catch ka movie Controller htl ka no data found msg ko pya mr
-            catch (ApiException ex)
-            {
-                Console.WriteLine(ex.StatusCode.ToString());
-                Console.WriteLine(ex.Content);
-            }
-
-            // thu ka Response status code does not indicate success: 404 (Not Found) pya dl
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine(ex.StatusCode.ToString());
+            Console.WriteLine(ex.Content);
         }
 
-        private async Task CreateAsync(string name, string title, string content)
+        // thu ka Response status code does not indicate success: 404 (Not Found) pya dl
+        catch (Exception ex)
         {
-            var movie = new MovieModel
-            {
-                MovieName = name,
-                MovieTitle = title,
-                MovieContent = content,
-            };
-
-            var result = await _service.CreateMovie(movie);
-            Console.WriteLine(result);
+            Console.WriteLine(ex.Message);
         }
+    }
 
-        private async Task UpdateAsync(int id, string name, string title, string content)
+    private async Task CreateAsync(string name, string title, string content)
+    {
+        var movie = new MovieModel
         {
-            var movie = new MovieModel
-            {
-                MovieName = name,
-                MovieTitle = title,
-                MovieContent = content,
-            };
+            MovieName = name,
+            MovieTitle = title,
+            MovieContent = content,
+        };
 
-            var result = await _service.UpdateMovie(id, movie);
-            Console.WriteLine(result);
-        }
+        var result = await _service.CreateMovie(movie);
+        Console.WriteLine(result);
+    }
 
-        private async Task DeleteAsync(int id)
+    private async Task UpdateAsync(int id, string name, string title, string content)
+    {
+        var movie = new MovieModel
         {
-            var result = await _service.DeleteMovie(id);
-            Console.WriteLine(result);
-        }
+            MovieName = name,
+            MovieTitle = title,
+            MovieContent = content,
+        };
+
+        var result = await _service.UpdateMovie(id, movie);
+        Console.WriteLine(result);
+    }
+
+    private async Task DeleteAsync(int id)
+    {
+        var result = await _service.DeleteMovie(id);
+        Console.WriteLine(result);
     }
 }
