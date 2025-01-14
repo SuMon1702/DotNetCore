@@ -1,6 +1,10 @@
-﻿
+﻿using SMDotNetCore.ConsoleAppRefitExamples;
 
-using SMDotNetCore.ConsoleAppRefitExamples;
-
-RefitExample refitExample= new RefitExample();
-await refitExample.RunAsync();
+internal class Program
+{
+    private static async Task Main(string[] args)
+    {
+        RefitExample refitExample = new RefitExample();
+        await refitExample.RunAsync();
+    }
+}
