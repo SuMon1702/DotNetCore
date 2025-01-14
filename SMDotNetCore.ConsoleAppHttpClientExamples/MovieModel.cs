@@ -1,12 +1,11 @@
-﻿namespace SMDotNetCore.ConsoleAppHttpClientExamples
+﻿namespace SMDotNetCore.ConsoleAppHttpClientExamples;
+
+public class MovieModel
 {
-    public class MovieModel
-    {
-        public int MovieID { get; set; }
-        public string? MovieName { get; set; }
-        public string? MovieTitle { get; set; }
-        public string? MovieContent { get; set; }
+    public int MovieID { get; set; }
+    public string? MovieName { get; set; }
+    public string? MovieTitle { get; set; }
+    public string? MovieContent { get; set; }
 
 
-    }
 }
